@@ -2038,3 +2038,22 @@ function setupPwaGuideModal() {
   if (closeBtn) closeBtn.addEventListener('click', () => modal && modal.classList.remove('active'));
   if (confirmBtn) confirmBtn.addEventListener('click', () => modal && modal.classList.remove('active'));
 }
+
+// Minimalist Intro Splash Overlay
+function setupSplashScreen() {
+  const splash = document.getElementById('appSplashScreen');
+  if (!splash) return;
+
+  setTimeout(() => {
+    splash.classList.add('hidden');
+    setTimeout(() => {
+      splash.style.display = 'none';
+    }, 550);
+  }, 1400);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setupSplashScreen);
+} else {
+  setupSplashScreen();
+}
