@@ -317,6 +317,7 @@ body {
   font-weight: 900;
   background: linear-gradient(90deg, #ffffff, #a5b4fc, #e0e7ff);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: 0.5px;
 }
@@ -360,6 +361,7 @@ body {
 .brand-title {
   background: linear-gradient(90deg, #ffffff, #a5b4fc, #e0e7ff);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 1.1rem;
   font-weight: 900;
