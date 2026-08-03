@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>KPSS Lisans 5 Ders 200 Deneme Paketi - Soru Bankası</title>
+
+  <!-- PWA & Mobile Settings -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0b0f19">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="KPSS Cepte">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css?v=300">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- VIEWS -->
+
+    <!-- VIEW 1: COMPACT SMART HOME DASHBOARD -->
+    <section id="view-home" class="view active">
+      
+      <!-- Hero Master Header Panel (Unified App Header + Live Net Stats) -->
+      <div class="glass-card hero-master-card">
+        <div class="hero-top-row">
+          <div class="brand">
+            <div class="brand-icon">🎓</div>
+            <div>
+              <h1 class="brand-title">KPSS Lisans 2026 Sınav Portalı</h1>
+              <p class="brand-subtitle">5 Ders • 200 Deneme Paketi • 3.000 Özgün Bilgi Kartı</p>
+            </div>
+          </div>
+          <div class="hero-top-actions">
+            <button class="install-btn-small" id="openPwaGuideBtn">📲 Uygulamayı Yükle</button>
+          </div>
+        </div>
+
+        <div class="hero-divider"></div>
+
+        <div class="smart-stat-bar-inner">
+          <div class="mini-stat">
+            <span class="mini-val" id="dashTotalSolved">0</span>
+            <span class="mini-lbl">Çözülen Soru</span>
+          </div>
+          <div class="mini-stat-divider"></div>
+          <div class="mini-stat">
+            <span class="mini-val" id="dashNetVal" style="color: #a5b4fc;">0.00</span>
+            <span class="mini-lbl">Toplam Net</span>
+          </div>
+          <div class="mini-stat-divider"></div>
+          <div class="mini-stat">
+            <span class="mini-val" id="dashAccuracy" style="color: #10b981;">%0</span>
+            <span class="mini-lbl">Başarı Oranı</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 1: Deneme Paneli -->
+      <div class="executive-panel-card">
+        <div class="panel-header">
+          <span class="panel-header-title">📚 5 Derslik Deneme Paneli (40'ar Deneme)</span>
+          <span class="panel-header-badge">200 Deneme Paketi</span>
+        </div>
+        <div class="panel-body">
+          <div class="category-grid">
+            <!-- Türkçe -->
+            <div class="category-card" data-cat="turkce" style="border: 1px solid rgba(168, 85, 247, 0.45);">
+              <div class="cat-top-row">
+                <div class="cat-icon" style="background: rgba(168, 85, 247, 0.22); color: #c084fc;">📚</div>
+                <div class="cat-info">
+                  <span class="cat-title">Türkçe</span>
+                  <span class="cat-count">30 Soru • 40 Deneme</span>
+                </div>
+              </div>
+              <div class="cat-action-btn" style="background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.35);">
+                <span>Denemeleri Aç</span> <span>➔</span>
+              </div>
+            </div>
+
+            <!-- Matematik -->
+            <div class="category-card" data-cat="matematik" style="border: 1px solid rgba(244, 63, 94, 0.45);">
+              <div class="cat-top-row">
+                <div class="cat-icon" style="background: rgba(244, 63, 94, 0.22); color: #fda4af;">📐</div>
+                <div class="cat-info">
+                  <span class="cat-title">Matematik & Geo</span>
+                  <span class="cat-count">26+4 Soru • 40 Deneme</span>
+                </div>
+              </div>
+              <div class="cat-action-btn" style="background: rgba(244, 63, 94, 0.2); color: #fda4af; border: 1px solid rgba(244, 63, 94, 0.35);">
+                <span>Denemeleri Aç</span> <span>➔</span>
+              </div>
+            </div>
+
+            <!-- Tarih -->
+            <div class="category-card" data-cat="tarih" style="border: 1px solid rgba(245, 158, 11, 0.45);">
+              <div class="cat-top-row">
+                <div class="cat-icon" style="background: rgba(245, 158, 11, 0.22); color: #fbbf24;">📜</div>
+                <div class="cat-info">
+                  <span class="cat-title">Tarih</span>
+                  <span class="cat-count">27 Soru • 40 Deneme</span>
+                </div>
+              </div>
+              <div class="cat-action-btn" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.35);">
+                <span>Denemeleri Aç</span> <span>➔</span>
+              </div>
+            </div>
+
+            <!-- Coğrafya -->
+            <div class="category-card" data-cat="cografya" style="border: 1px solid rgba(16, 185, 129, 0.45);">
+              <div class="cat-top-row">
+                <div class="cat-icon" style="background: rgba(16, 185, 129, 0.22); color: #34d399;">🌍</div>
+                <div class="cat-info">
+                  <span class="cat-title">Coğrafya</span>
+                  <span class="cat-count">18 Soru • 40 Deneme</span>
+                </div>
+              </div>
+              <div class="cat-action-btn" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35);">
+                <span>Denemeleri Aç</span> <span>➔</span>
+              </div>
+            </div>
+
+            <!-- Vatandaşlık -->
+            <div class="category-card" data-cat="vatandaslik" style="border: 1px solid rgba(6, 182, 212, 0.45);">
+              <div class="cat-top-row">
+                <div class="cat-icon" style="background: rgba(6, 182, 212, 0.22); color: #22d3ee;">⚖️</div>
+                <div class="cat-info">
+                  <span class="cat-title">Vatandaşlık & Güncel</span>
+                  <span class="cat-count">15 Soru • 40 Deneme</span>
+                </div>
+              </div>
+              <div class="cat-action-btn" style="background: rgba(6, 182, 212, 0.2); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.35);">
+                <span>Denemeleri Aç</span> <span>➔</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 2: İlerleme & Günün İpucu -->
+      <div class="executive-panel-card">
+        <div class="panel-header">
+          <span class="panel-header-title">🎯 Genel İlerlemeniz ve Günün İpucu</span>
+          <span class="panel-header-badge" style="color: #34d399; background: rgba(16, 185, 129, 0.18); border-color: rgba(16, 185, 129, 0.35);">Canlı İstatistik</span>
+        </div>
+        <div class="panel-body">
+          <div class="view-home-widgets-row">
+            <!-- 200 Deneme İlerlemesi -->
+            <div class="glass-card smart-widget-card" style="background: linear-gradient(135deg, rgba(30, 41, 65, 0.9), rgba(18, 24, 40, 0.95)); border: 1px solid rgba(99, 102, 241, 0.35); padding: 14px 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.88rem; font-weight: 800; color: #a5b4fc;">📊 200 Deneme İlerlemesi</span>
+                <span style="font-size: 0.82rem; font-weight: 800; color: #10b981;" id="overallCompletedText">0 / 200 Tamamlandı</span>
+              </div>
+
+              <div class="progress-bar-container" style="height: 8px; margin: 10px 0; background: rgba(255,255,255,0.08); border-radius: 6px;">
+                <div class="progress-bar-fill" id="overallProgressBar" style="width: 0%; background: linear-gradient(90deg, #6366f1, #10b981); height: 100%; border-radius: 6px;"></div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted);">
+                <span>Çözülen Deneme Oranı</span>
+                <span id="overallPercentageText" style="font-weight: 700; color: #fff;">%0.0</span>
+              </div>
+            </div>
+
+            <!-- Günün ÖSYM Çabuk Tekrar İpucu Widget -->
+            <div class="glass-card smart-widget-card" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(30, 41, 65, 0.9)); border: 1px solid rgba(245, 158, 11, 0.4); padding: 14px 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="font-size: 0.88rem; font-weight: 800; color: #fbbf24;">💡 Günün ÖSYM Kilit İpucu</span>
+                <span style="font-size: 0.74rem; font-weight: 700; color: #fbbf24; background: rgba(245, 158, 11, 0.2); padding: 2px 8px; border-radius: 10px;">Hızlı Tekrar</span>
+              </div>
+              <p style="font-size: 0.85rem; line-height: 1.45; color: #f3f4f6; margin-bottom: 12px;" id="dailyTipText">
+                Osmanlı Devleti'nde Tımar Sistemi ve Mukataa toprak soruları ÖSYM KPSS Lisans sınavlarında her 2 yılda bir mutlaka sorulmaktadır.
+              </p>
+              <button class="btn" id="openFlashcardsFromHomeBtn" style="padding: 10px 14px; font-size: 0.82rem; font-weight: 700; background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(217, 119, 6, 0.35)); border: 1px solid rgba(245, 158, 11, 0.6); color: #fbbf24; width: 100%; border-radius: 10px; cursor: pointer;">
+                🎴 Bilgi Kartları İle Hızlı Tekrar Et ➔
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 3: Hızlı İşlem Kısayolları -->
+      <div class="executive-panel-card">
+        <div class="panel-header">
+          <span class="panel-header-title">⚡ Hızlı İşlem Kısayolları</span>
+          <span class="panel-header-badge" style="color: #fbbf24; background: rgba(245, 158, 11, 0.18); border-color: rgba(245, 158, 11, 0.35);">Kısayol Merkezi</span>
+        </div>
+        <div class="panel-body">
+          <div style="display: flex; gap: 10px; padding: 4px 0;">
+            <button class="btn btn-secondary" id="quickRetryMissedBtn" style="flex: 1; padding: 12px 10px; font-size: 0.85rem; border-color: rgba(239, 68, 68, 0.35); color: #f87171; background: rgba(239, 68, 68, 0.08);">
+              ❌ Yanlışlarımı Tekrar Et
+            </button>
+            <button class="btn btn-secondary" id="quickOpenFavsBtn" style="flex: 1; padding: 12px 10px; font-size: 0.85rem; border-color: rgba(245, 158, 11, 0.35); color: #fbbf24; background: rgba(245, 158, 11, 0.08);">
+              ★ Favorilerim
+            </button>
+            <button class="btn btn-secondary" id="quickOpenStatsBtn" style="flex: 1; padding: 12px 10px; font-size: 0.85rem; border-color: rgba(16, 185, 129, 0.35); color: #34d399; background: rgba(16, 185, 129, 0.08);">
+              📊 Net Karnem
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- VIEW 2: TÜRKÇE 40 DENEME MODULE -->
+    <section id="view-turkce-denemeler" class="view">
+      <div class="section-title">
+        <span>📚 30'ar Soruluk 40 Türkçe Denemesi</span>
+      </div>
+
+      <div class="year-filter-section">
+        <div class="year-chips" id="diffFilterChips">
+          <div class="chip active" data-diff="all">Tüm (40)</div>
+          <div class="chip" data-diff="kolay">🟢 Kolay</div>
+          <div class="chip" data-diff="orta">🟡 Orta</div>
+          <div class="chip" data-diff="zor">🔴 Zor</div>
+          <div class="chip" data-diff="sampiyon">🟣 Şampiyon</div>
+        </div>
+      </div>
+
+      <div class="deneme-grid" id="turkceDenemeGrid"></div>
+    </section>
+
+
+    <!-- VIEW 3: MATEMATİK & GEOMETRİ 40 DENEME MODULE -->
+    <section id="view-matematik-denemeler" class="view">
+      <div class="section-title">
+        <span>📐 30'ar Soruluk (26 Mat + 4 Geo) 40 Deneme</span>
+      </div>
+
+      <div class="year-filter-section">
+        <div class="year-chips" id="matDiffFilterChips">
+          <div class="chip active" data-diff="all">Tüm (40)</div>
+          <div class="chip" data-diff="kolay">🟢 Kolay</div>
+          <div class="chip" data-diff="orta">🟡 Orta</div>
+          <div class="chip" data-diff="zor">🔴 Zor</div>
+          <div class="chip" data-diff="sampiyon">🟣 Şampiyon</div>
+        </div>
+      </div>
+
+      <div class="deneme-grid" id="matematikDenemeGrid"></div>
+    </section>
+
+    <!-- VIEW 4: TARİH 40 DENEME MODULE -->
+    <section id="view-tarih-denemeler" class="view">
+      <div class="section-title">
+        <span>📜 27'şer Soruluk 40 Tarih Denemesi</span>
+      </div>
+
+      <div class="year-filter-section">
+        <div class="year-chips" id="tarDiffFilterChips">
+          <div class="chip active" data-diff="all">Tüm (40)</div>
+          <div class="chip" data-diff="kolay">🟢 Kolay</div>
+          <div class="chip" data-diff="orta">🟡 Orta</div>
+          <div class="chip" data-diff="zor">🔴 Zor</div>
+          <div class="chip" data-diff="sampiyon">🟣 Şampiyon</div>
+        </div>
+      </div>
+
+      <div class="deneme-grid" id="tarihDenemeGrid"></div>
+    </section>
+
+    <!-- VIEW 5: COĞRAFYA 40 DENEME MODULE -->
+    <section id="view-cografya-denemeler" class="view">
+      <div class="section-title">
+        <span>🌍 18'er Soruluk 40 Coğrafya Denemesi</span>
+      </div>
+
+      <div class="year-filter-section">
+        <div class="year-chips" id="cogDiffFilterChips">
+          <div class="chip active" data-diff="all">Tüm (40)</div>
+          <div class="chip" data-diff="kolay">🟢 Kolay</div>
+          <div class="chip" data-diff="orta">🟡 Orta</div>
+          <div class="chip" data-diff="zor">🔴 Zor</div>
+          <div class="chip" data-diff="sampiyon">🟣 Şampiyon</div>
+        </div>
+      </div>
+
+      <div class="deneme-grid" id="cografyaDenemeGrid"></div>
+    </section>
+
+    <!-- VIEW 6: VATANDAŞLIK 40 DENEME MODULE -->
+    <section id="view-vatandaslik-denemeler" class="view">
+      <div class="section-title">
+        <span>⚖️ 15'er Soruluk 40 Vatandaşlık & Güncel Denemesi</span>
+      </div>
+
+      <div class="year-filter-section">
+        <div class="year-chips" id="vatDiffFilterChips">
+          <div class="chip active" data-diff="all">Tüm (40)</div>
+          <div class="chip" data-diff="kolay">🟢 Kolay</div>
+          <div class="chip" data-diff="orta">🟡 Orta</div>
+          <div class="chip" data-diff="zor">🔴 Zor</div>
+          <div class="chip" data-diff="sampiyon">🟣 Şampiyon</div>
+        </div>
+      </div>
+
+      <div class="deneme-grid" id="vatandaslikDenemeGrid"></div>
+    </section>
+
+
+    <!-- VIEW 7: QUIZ / TEST SCREEN -->
+    <section id="view-quiz" class="view">
+      <div class="glass-card" style="padding: 14px;">
+        
+        <div class="quiz-top-bar">
+          <button class="back-btn" id="exitQuizBtn">❮</button>
+          <span class="quiz-badge" id="quizCategoryBadge">Tarih</span>
+          <div class="timer-badge" id="timerBadge" style="display: none;">
+            <span>⏱️</span> <span id="timerText">15:00</span>
+          </div>
+        </div>
+
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="quizProgressBar"></div>
+        </div>
+
+        <div class="question-meta">
+          <span id="questionCounterText">Soru 1 / 30</span>
+          <button class="bookmark-btn" id="toggleBookmarkBtn" title="Favorilere Ekle">★</button>
+        </div>
+
+        <div class="question-text" id="questionText">
+          Soru yükleniyor...
+        </div>
+
+        <div class="options-list" id="optionsList"></div>
+
+        <!-- Explanation box -->
+        <div class="explanation-box" id="explanationBox">
+          <span class="exp-title">💡 Soru Çözümü ve Açıklaması:</span>
+          <p class="exp-text" id="explanationText"></p>
+        </div>
+
+        <div class="quiz-footer">
+          <button class="btn quiz-next-btn" id="nextQuestionBtn">
+            Sonraki Soru ❯
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- VIEW 8: FLASHCARDS (With 3 Distinct Subject Tabs!) -->
+    <section id="view-flashcards" class="view">
+      <div class="section-title">
+        <span>🎴 Bilgi Kartları (Çabuk Tekrar)</span>
+        <span style="font-size: 0.8rem; color: var(--text-muted);" id="flashcardCounter">1 / 8</span>
+      </div>
+
+      <!-- 3 Distinct Subject Deck Tabs -->
+      <div class="year-filter-section">
+        <div class="year-chips" id="flashcardSubjectChips">
+          <div class="chip active" data-deck="tarih">📜 Tarih Kartları</div>
+          <div class="chip" data-deck="cografya">🌍 Coğrafya Kartları</div>
+          <div class="chip" data-deck="vatandaslik">⚖️ Vatandaşlık Kartları</div>
+        </div>
+      </div>
+
+      <div class="flashcard-wrapper" id="flashcardWrapper">
+        <div class="flashcard" id="flashcardElement">
+          <!-- CARD FRONT -->
+          <div class="flashcard-front">
+            <div class="flashcard-top-row">
+              <span class="flash-badge" id="flashCategoryBadge">TARİH</span>
+            </div>
+
+            <div class="flashcard-body-content">
+              <h3 class="flashcard-title" id="flashFrontTitle">Konu Başlığı</h3>
+              <span class="flashcard-hint">🔄 Cevabı / Notu Görmek İçin Dokunun</span>
+            </div>
+
+            <div class="flashcard-card-footer">
+              <button class="btn btn-secondary flash-nav-btn" id="prevFlashcardBtn">❮ Önceki</button>
+              <button class="btn quiz-next-btn flash-nav-btn" id="nextFlashcardBtn">Sonraki ❯</button>
+            </div>
+          </div>
+
+          <!-- CARD BACK -->
+          <div class="flashcard-back">
+            <div class="flashcard-top-row">
+              <h4 style="font-size: 0.95rem; color: #10b981; font-weight: 800; display: flex; align-items: center; gap: 6px;">
+                <span>💡</span> <span>ÖSYM Önemli Not:</span>
+              </h4>
+            </div>
+
+            <div class="flashcard-body-content">
+              <p class="flashcard-desc" id="flashBackContent">Açıklama metni burada görünecek.</p>
+              <span class="flashcard-hint">🔄 Soruya Dönmek İçin Dokunun</span>
+            </div>
+
+            <div class="flashcard-card-footer">
+              <button class="btn btn-secondary flash-nav-btn" id="prevFlashcardBtnBack">❮ Önceki</button>
+              <button class="btn quiz-next-btn flash-nav-btn" id="nextFlashcardBtnBack">Sonraki ❯</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- VIEW 9: MISSED QUESTIONS -->
+    <section id="view-missed" class="view">
+      <div class="section-title">
+        <span>❌ Yanlış Yapılan Sorularım</span>
+        <span style="font-size: 0.8rem; color: #ef4444; font-weight: 800;" id="missedCountBadge">0 Yanlış Soru</span>
+      </div>
+
+      <div id="missedQuestionsContainer" style="display: flex; flex-direction: column; gap: 10px;"></div>
+    </section>
+
+
+    <!-- VIEW 10: FAVORITE QUESTIONS -->
+    <section id="view-favs" class="view">
+      <div class="section-title">
+        <span>★ Favori Sorularım</span>
+        <span style="font-size: 0.8rem; color: #fbbf24; font-weight: 800;" id="favsCountBadge">0 Kayıtlı Soru</span>
+      </div>
+
+      <div id="favsQuestionsContainer" style="display: flex; flex-direction: column; gap: 10px;"></div>
+    </section>
+
+
+    <!-- VIEW 10: STATISTICS -->
+    <section id="view-stats" class="view">
+      <div class="section-title">
+        <span>ÖSYM İstatistik & Net Analizi</span>
+      </div>
+
+      <div class="glass-card" style="display: flex; flex-direction: column; gap: 12px; padding: 14px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-weight: 600;">Genel Başarı Oranı</span>
+          <span style="font-size: 1.2rem; font-weight: 800; color: #10b981;" id="statsAccuracyVal">%0</span>
+        </div>
+
+        <div class="progress-bar-container" style="height: 8px;">
+          <div class="progress-bar-fill" id="statsAccuracyBar" style="background: linear-gradient(90deg, #10b981, #34d399);"></div>
+        </div>
+
+        <div class="net-box" style="padding: 10px;">
+          <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">HESAPLANAN ÖSYM TOPLAM NETİNİZ</span>
+          <span class="net-value" id="statsNetCalcVal" style="font-size: 1.4rem;">0.00 NET</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+          <div class="stat-box" style="padding: 8px;">
+            <span class="stat-value" id="statsCorrectTotal" style="color: #10b981; font-size: 1.1rem;">0</span>
+            <span class="stat-label">Doğru</span>
+          </div>
+          <div class="stat-box" style="padding: 8px;">
+            <span class="stat-value" id="statsWrongTotal" style="color: #ef4444; font-size: 1.1rem;">0</span>
+            <span class="stat-label">Yanlış</span>
+          </div>
+        </div>
+
+        <button class="btn btn-secondary" id="resetStatsBtn" style="margin-top: 6px; color: #ef4444; border-color: rgba(239, 68, 68, 0.3); padding: 8px; font-size: 0.82rem;">
+          🗑️ Sıfırla
+        </button>
+      </div>
+    </section>
+
+  </div> <!-- End Container -->
+
+
+  <!-- BOTTOM NAVIGATION BAR -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" data-target="view-home">
+      <span class="nav-icon">🏠</span>
+      <span>Ana Sayfa</span>
+    </button>
+    <button class="nav-item" data-target="view-turkce-denemeler">
+      <span class="nav-icon">📚</span>
+      <span>Türkçe</span>
+    </button>
+    <button class="nav-item" data-target="view-matematik-denemeler">
+      <span class="nav-icon">📐</span>
+      <span>Matematik</span>
+    </button>
+    <button class="nav-item" data-target="view-tarih-denemeler">
+      <span class="nav-icon">📜</span>
+      <span>Tarih</span>
+    </button>
+    <button class="nav-item" data-target="view-cografya-denemeler">
+      <span class="nav-icon">🌍</span>
+      <span>Coğrafya</span>
+    </button>
+    <button class="nav-item" data-target="view-vatandaslik-denemeler">
+      <span class="nav-icon">⚖️</span>
+      <span>Vatandaşlık</span>
+    </button>
+  </nav>
+
+
+  <!-- EXAM RESULT SCORECARD MODAL -->
+  <div class="modal-overlay" id="examResultModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">🏆 ÖSYM Sınav Karneniz</h3>
+        <button class="close-modal-btn" id="closeExamModalBtn">&times;</button>
+      </div>
+
+      <div class="scorecard-grid">
+        <div class="stat-box">
+          <span class="stat-value" id="examModalCorrect" style="color: #10b981;">0</span>
+          <span class="stat-label">Doğru</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-value" id="examModalWrong" style="color: #ef4444;">0</span>
+          <span class="stat-label">Yanlış</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-value" id="examModalEmpty" style="color: #f59e0b;">0</span>
+          <span class="stat-label">Boş</span>
+        </div>
+
+        <div class="net-box">
+          <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">HESAPLANAN TOPLAM NETİNİZ</span>
+          <span class="net-value" id="examModalNet">0.00 NET</span>
+          <span class="p3-score" id="examModalP3">Tahmini P3 Puanı: --</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" id="confirmExamModalBtn">
+        Ana Sayfaya Dön 🏠
+      </button>
+    </div>
+  </div>
+
+  <!-- QUIZ EXIT CONFIRMATION MODAL -->
+  <div class="modal-overlay" id="exitConfirmModal">
+    <div class="modal-content" style="max-width: 420px; border-color: rgba(245, 158, 11, 0.45);">
+      <div class="modal-header">
+        <h3 class="modal-title" style="color: #fbbf24; display: flex; align-items: center; gap: 8px;">
+          <span>⏸️</span> <span>Denemeyi Yarıda Bırakıyorsunuz</span>
+        </h3>
+        <button class="close-modal-btn" id="closeExitModalBtn">&times;</button>
+      </div>
+      <p style="font-size: 0.88rem; line-height: 1.45; color: #f3f4f6; margin: 12px 0;" id="exitModalDescription">
+        Şu anki ilerlemeniz ve kalan süreniz kaydedilecektir. Daha sonra bu denemeye istediğiniz zaman kaldığınız yerden devam edebilirsiniz.
+      </p>
+      <div style="display: flex; gap: 10px; margin-top: 14px;">
+        <button class="btn btn-secondary" id="cancelExitBtn" style="flex: 1; padding: 12px; font-size: 0.86rem; cursor: pointer;">
+          Sınava Dön ✏️
+        </button>
+        <button class="btn" id="confirmExitBtn" style="flex: 1; padding: 12px; font-size: 0.86rem; cursor: pointer;">
+          Kaydet ve Çık 💾
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- PWA INSTALLATION GUIDE MODAL FOR IPHONE 13 -->
+  <div class="modal-overlay" id="pwaModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">📲 iPhone'a Uygulama Olarak Ekle</h3>
+        <button class="close-modal-btn" id="closePwaModalBtn">&times;</button>
+      </div>
+      <p style="font-size: 0.88rem; color: var(--text-muted);">
+        Bu uygulamayı App Store olmadan iPhone 13 cihazınızda %100 internetsiz çalışacak şekilde ekleyebilirsiniz:
+      </p>
+
+      <div class="pwa-step">
+        <div class="pwa-step-num">1</div>
+        <div class="pwa-step-text">Safari tarayıcısının altındaki <strong>Paylaş (Share)</strong> simgesine dokunun.</div>
+      </div>
+
+      <div class="pwa-step">
+        <div class="pwa-step-num">2</div>
+        <div class="pwa-step-text">Açılan menüyü aşağı kaydırıp <strong>"Ana Ekrana Ekle"</strong> seçeneğine tıklayın.</div>
+      </div>
+
+      <div class="pwa-step">
+        <div class="pwa-step-num">3</div>
+        <div class="pwa-step-text">Sağ üstteki <strong>"Ekle"</strong> butonuna basın. Uygulamanız hazır!</div>
+      </div>
+
+      <button class="btn btn-primary" id="confirmPwaModalBtn" style="margin-top: 6px;">
+        Anladım 👍
+      </button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="tarih_kartlar.js?v=300"></script>
+  <script src="cografya_kartlar.js?v=300"></script>
+  <script src="vatandaslik_kartlar.js?v=300"></script>
+  <script src="questions.js?v=300"></script>
+  <script src="turkce_denemeler.js?v=300"></script>
+  <script src="matematik_denemeler.js?v=300"></script>
+  <script src="tarih_denemeler.js?v=300"></script>
+  <script src="cografya_denemeler.js?v=300"></script>
+  <script src="vatandaslik_denemeler.js?v=300"></script>
+  <script src="app.js?v=300"></script>
+</body>
+</html>

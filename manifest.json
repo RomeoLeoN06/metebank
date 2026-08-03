@@ -1,0 +1,24 @@
+{
+  "name": "KPSS Lisans - Soru Bankası",
+  "short_name": "KPSS Cepte",
+  "description": "iPhone ve Mobil cihazlar için çevrimdışı KPSS Lisans Soru Bankası ve Deneme Sınavı",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0f19",
+  "theme_color": "#0b0f19",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

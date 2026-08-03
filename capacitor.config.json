@@ -1,0 +1,6 @@
+{
+  "appId": "com.metebank.kpss",
+  "appName": "KPSS Lisans",
+  "webDir": ".",
+  "bundledWebRuntime": false
+}

@@ -1,0 +1,14 @@
+{
+  "name": "metebank-kpss-app",
+  "version": "1.0.0",
+  "description": "KPSS Lisans Soru Bankasi ve Deneme Sinavi Mobil Uygulamasi",
+  "main": "app.js",
+  "scripts": {
+    "start": "powershell -ExecutionPolicy Bypass -File .\\server.ps1"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/cli": "^6.0.0",
+    "@capacitor/core": "^6.0.0"
+  }
+}
