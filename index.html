@@ -30,9 +30,9 @@
         <div class="hero-top-row">
           <div class="brand">
             <div class="brand-icon">🎓</div>
-            <div>
+            <div class="brand-text-container">
               <h1 class="brand-title">KPSS Lisans 2026 Sınav Portalı</h1>
-              <p class="brand-subtitle">5 Ders • 200 Deneme Paketi • 3.000 Özgün Bilgi Kartı</p>
+              <p class="brand-subtitle">✨ 5 Ders • 200 Deneme Paketi • 3.000 Özgün Bilgi Kartı</p>
             </div>
           </div>
           <div class="hero-top-actions">
@@ -43,19 +43,17 @@
         <div class="hero-divider"></div>
 
         <div class="smart-stat-bar-inner">
-          <div class="mini-stat">
+          <div class="mini-stat stat-solved">
             <span class="mini-val" id="dashTotalSolved">0</span>
-            <span class="mini-lbl">Çözülen Soru</span>
+            <span class="mini-lbl">📝 Çözülen Soru</span>
           </div>
-          <div class="mini-stat-divider"></div>
-          <div class="mini-stat">
-            <span class="mini-val" id="dashNetVal" style="color: #a5b4fc;">0.00</span>
-            <span class="mini-lbl">Toplam Net</span>
+          <div class="mini-stat stat-net">
+            <span class="mini-val" id="dashNetVal">0.00</span>
+            <span class="mini-lbl">🎯 Toplam Net</span>
           </div>
-          <div class="mini-stat-divider"></div>
-          <div class="mini-stat">
-            <span class="mini-val" id="dashAccuracy" style="color: #10b981;">%0</span>
-            <span class="mini-lbl">Başarı Oranı</span>
+          <div class="mini-stat stat-accuracy">
+            <span class="mini-val" id="dashAccuracy">%0</span>
+            <span class="mini-lbl">📈 Başarı Oranı</span>
           </div>
         </div>
       </div>
@@ -69,71 +67,71 @@
         <div class="panel-body">
           <div class="category-grid">
             <!-- Türkçe -->
-            <div class="category-card" data-cat="turkce" style="border: 1px solid rgba(168, 85, 247, 0.45);">
+            <div class="category-card cat-turkce" data-cat="turkce" style="background: linear-gradient(145deg, rgba(168, 85, 247, 0.18), rgba(126, 34, 206, 0.08)); border: 1px solid rgba(168, 85, 247, 0.5); box-shadow: 0 4px 20px rgba(168, 85, 247, 0.18);">
               <div class="cat-top-row">
-                <div class="cat-icon" style="background: rgba(168, 85, 247, 0.22); color: #c084fc;">📚</div>
+                <div class="cat-icon" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.35), rgba(126, 34, 206, 0.45)); color: #f3e8ff; border: 1px solid rgba(168, 85, 247, 0.5);">📚</div>
                 <div class="cat-info">
-                  <span class="cat-title">Türkçe</span>
-                  <span class="cat-count">30 Soru • 40 Deneme</span>
+                  <span class="cat-title" style="color: #f3e8ff; font-weight: 800;">Türkçe</span>
+                  <span class="cat-count" style="color: #d8b4fe;">30 Soru • 40 Deneme</span>
                 </div>
               </div>
-              <div class="cat-action-btn" style="background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.35);">
+              <div class="cat-action-btn" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(126, 34, 206, 0.4)); color: #f3e8ff; border: 1px solid rgba(168, 85, 247, 0.5);">
                 <span>Denemeleri Aç</span> <span>➔</span>
               </div>
             </div>
 
             <!-- Matematik -->
-            <div class="category-card" data-cat="matematik" style="border: 1px solid rgba(244, 63, 94, 0.45);">
+            <div class="category-card cat-matematik" data-cat="matematik" style="background: linear-gradient(145deg, rgba(244, 63, 94, 0.18), rgba(190, 18, 60, 0.08)); border: 1px solid rgba(244, 63, 94, 0.5); box-shadow: 0 4px 20px rgba(244, 63, 94, 0.18);">
               <div class="cat-top-row">
-                <div class="cat-icon" style="background: rgba(244, 63, 94, 0.22); color: #fda4af;">📐</div>
+                <div class="cat-icon" style="background: linear-gradient(135deg, rgba(244, 63, 94, 0.35), rgba(190, 18, 60, 0.45)); color: #ffe4e6; border: 1px solid rgba(244, 63, 94, 0.5);">📐</div>
                 <div class="cat-info">
-                  <span class="cat-title">Matematik & Geo</span>
-                  <span class="cat-count">26+4 Soru • 40 Deneme</span>
+                  <span class="cat-title" style="color: #ffe4e6; font-weight: 800;">Matematik & Geo</span>
+                  <span class="cat-count" style="color: #fca5a5;">26+4 Soru • 40 Deneme</span>
                 </div>
               </div>
-              <div class="cat-action-btn" style="background: rgba(244, 63, 94, 0.2); color: #fda4af; border: 1px solid rgba(244, 63, 94, 0.35);">
+              <div class="cat-action-btn" style="background: linear-gradient(135deg, rgba(244, 63, 94, 0.3), rgba(190, 18, 60, 0.4)); color: #ffe4e6; border: 1px solid rgba(244, 63, 94, 0.5);">
                 <span>Denemeleri Aç</span> <span>➔</span>
               </div>
             </div>
 
             <!-- Tarih -->
-            <div class="category-card" data-cat="tarih" style="border: 1px solid rgba(245, 158, 11, 0.45);">
+            <div class="category-card cat-tarih" data-cat="tarih" style="background: linear-gradient(145deg, rgba(245, 158, 11, 0.18), rgba(180, 83, 9, 0.08)); border: 1px solid rgba(245, 158, 11, 0.5); box-shadow: 0 4px 20px rgba(245, 158, 11, 0.18);">
               <div class="cat-top-row">
-                <div class="cat-icon" style="background: rgba(245, 158, 11, 0.22); color: #fbbf24;">📜</div>
+                <div class="cat-icon" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.35), rgba(180, 83, 9, 0.45)); color: #fef3c7; border: 1px solid rgba(245, 158, 11, 0.5);">📜</div>
                 <div class="cat-info">
-                  <span class="cat-title">Tarih</span>
-                  <span class="cat-count">27 Soru • 40 Deneme</span>
+                  <span class="cat-title" style="color: #fef3c7; font-weight: 800;">Tarih</span>
+                  <span class="cat-count" style="color: #fcd34d;">27 Soru • 40 Deneme</span>
                 </div>
               </div>
-              <div class="cat-action-btn" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.35);">
+              <div class="cat-action-btn" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(180, 83, 9, 0.4)); color: #fef3c7; border: 1px solid rgba(245, 158, 11, 0.5);">
                 <span>Denemeleri Aç</span> <span>➔</span>
               </div>
             </div>
 
             <!-- Coğrafya -->
-            <div class="category-card" data-cat="cografya" style="border: 1px solid rgba(16, 185, 129, 0.45);">
+            <div class="category-card cat-cografya" data-cat="cografya" style="background: linear-gradient(145deg, rgba(16, 185, 129, 0.18), rgba(4, 120, 87, 0.08)); border: 1px solid rgba(16, 185, 129, 0.5); box-shadow: 0 4px 20px rgba(16, 185, 129, 0.18);">
               <div class="cat-top-row">
-                <div class="cat-icon" style="background: rgba(16, 185, 129, 0.22); color: #34d399;">🌍</div>
+                <div class="cat-icon" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.35), rgba(4, 120, 87, 0.45)); color: #d1fae5; border: 1px solid rgba(16, 185, 129, 0.5);">🌍</div>
                 <div class="cat-info">
-                  <span class="cat-title">Coğrafya</span>
-                  <span class="cat-count">18 Soru • 40 Deneme</span>
+                  <span class="cat-title" style="color: #d1fae5; font-weight: 800;">Coğrafya</span>
+                  <span class="cat-count" style="color: #6ee7b7;">18 Soru • 40 Deneme</span>
                 </div>
               </div>
-              <div class="cat-action-btn" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35);">
+              <div class="cat-action-btn" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(4, 120, 87, 0.4)); color: #d1fae5; border: 1px solid rgba(16, 185, 129, 0.5);">
                 <span>Denemeleri Aç</span> <span>➔</span>
               </div>
             </div>
 
             <!-- Vatandaşlık -->
-            <div class="category-card" data-cat="vatandaslik" style="border: 1px solid rgba(6, 182, 212, 0.45);">
+            <div class="category-card cat-vatandaslik" data-cat="vatandaslik" style="background: linear-gradient(145deg, rgba(6, 182, 212, 0.18), rgba(14, 116, 144, 0.08)); border: 1px solid rgba(6, 182, 212, 0.5); box-shadow: 0 4px 20px rgba(6, 182, 212, 0.18);">
               <div class="cat-top-row">
-                <div class="cat-icon" style="background: rgba(6, 182, 212, 0.22); color: #22d3ee;">⚖️</div>
+                <div class="cat-icon" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.35), rgba(14, 116, 144, 0.45)); color: #cffafe; border: 1px solid rgba(6, 182, 212, 0.5);">⚖️</div>
                 <div class="cat-info">
-                  <span class="cat-title">Vatandaşlık & Güncel</span>
-                  <span class="cat-count">15 Soru • 40 Deneme</span>
+                  <span class="cat-title" style="color: #cffafe; font-weight: 800;">Vatandaşlık & Güncel</span>
+                  <span class="cat-count" style="color: #67e8f9;">15 Soru • 40 Deneme</span>
                 </div>
               </div>
-              <div class="cat-action-btn" style="background: rgba(6, 182, 212, 0.2); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.35);">
+              <div class="cat-action-btn" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(14, 116, 144, 0.4)); color: #cffafe; border: 1px solid rgba(6, 182, 212, 0.5);">
                 <span>Denemeleri Aç</span> <span>➔</span>
               </div>
             </div>
@@ -184,20 +182,20 @@
       </div>
 
       <!-- PANEL 3: Hızlı İşlem Kısayolları -->
-      <div class="executive-panel-card">
+      <div class="executive-panel-card" style="background: linear-gradient(145deg, rgba(20, 28, 46, 0.95), rgba(12, 16, 28, 0.98)); border: 1px solid rgba(99, 102, 241, 0.3); box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);">
         <div class="panel-header">
-          <span class="panel-header-title">⚡ Hızlı İşlem Kısayolları</span>
-          <span class="panel-header-badge" style="color: #fbbf24; background: rgba(245, 158, 11, 0.18); border-color: rgba(245, 158, 11, 0.35);">Kısayol Merkezi</span>
+          <span class="panel-header-title" style="color: #ffffff; font-weight: 800;">⚡ Hızlı İşlem Kısayolları</span>
+          <span class="panel-header-badge" style="color: #fbbf24; background: rgba(245, 158, 11, 0.2); border-color: rgba(245, 158, 11, 0.45); font-weight: 800;">Kısayol Merkezi</span>
         </div>
         <div class="panel-body">
-          <div style="display: flex; gap: 10px; padding: 4px 0;">
-            <button class="btn btn-secondary" id="quickRetryMissedBtn" style="flex: 1; padding: 12px 10px; font-size: 0.85rem; border-color: rgba(239, 68, 68, 0.35); color: #f87171; background: rgba(239, 68, 68, 0.08);">
+          <div style="display: flex; gap: 12px; padding: 4px 0;">
+            <button class="btn" id="quickRetryMissedBtn" style="flex: 1; padding: 14px 10px; font-size: 0.88rem; font-weight: 800; border-radius: 12px; background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(185, 28, 28, 0.35)); border: 1px solid rgba(239, 68, 68, 0.6); color: #fca5a5; cursor: pointer; box-shadow: 0 4px 16px rgba(239, 68, 68, 0.25); transition: all 0.2s ease;">
               ❌ Yanlışlarımı Tekrar Et
             </button>
-            <button class="btn btn-secondary" id="quickOpenFavsBtn" style="flex: 1; padding: 12px 10px; font-size: 0.85rem; border-color: rgba(245, 158, 11, 0.35); color: #fbbf24; background: rgba(245, 158, 11, 0.08);">
+            <button class="btn" id="quickOpenFavsBtn" style="flex: 1; padding: 14px 10px; font-size: 0.88rem; font-weight: 800; border-radius: 12px; background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(180, 83, 9, 0.35)); border: 1px solid rgba(245, 158, 11, 0.6); color: #fde047; cursor: pointer; box-shadow: 0 4px 16px rgba(245, 158, 11, 0.25); transition: all 0.2s ease;">
               ★ Favorilerim
             </button>
-            <button class="btn btn-secondary" id="quickOpenStatsBtn" style="flex: 1; padding: 12px 10px; font-size: 0.85rem; border-color: rgba(16, 185, 129, 0.35); color: #34d399; background: rgba(16, 185, 129, 0.08);">
+            <button class="btn" id="quickOpenStatsBtn" style="flex: 1; padding: 14px 10px; font-size: 0.88rem; font-weight: 800; border-radius: 12px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(4, 120, 87, 0.35)); border: 1px solid rgba(16, 185, 129, 0.6); color: #6ee7b7; cursor: pointer; box-shadow: 0 4px 16px rgba(16, 185, 129, 0.25); transition: all 0.2s ease;">
               📊 Net Karnem
             </button>
           </div>
@@ -337,8 +335,11 @@
           <p class="exp-text" id="explanationText"></p>
         </div>
 
-        <div class="quiz-footer">
-          <button class="btn quiz-next-btn" id="nextQuestionBtn">
+        <div class="quiz-footer" style="display: flex; gap: 10px; width: 100%; margin-top: 14px;">
+          <button class="btn btn-secondary" id="prevQuestionBtn" style="flex: 1; padding: 12px; font-weight: 700; font-size: 0.9rem; cursor: pointer; display: none; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); color: #cbd5e1; border-radius: 12px;">
+            ❮ Önceki Soru
+          </button>
+          <button class="btn quiz-next-btn" id="nextQuestionBtn" style="flex: 1;">
             Sonraki Soru ❯
           </button>
         </div>
@@ -429,39 +430,67 @@
 
     <!-- VIEW 10: STATISTICS -->
     <section id="view-stats" class="view">
-      <div class="section-title">
-        <span>ÖSYM İstatistik & Net Analizi</span>
+      <div class="section-title" style="margin-bottom: 16px;">
+        <div style="display: flex; flex-direction: column;">
+          <span style="font-size: 1.2rem; font-weight: 800; color: #ffffff;">📊 ÖSYM İstatistik & Net Analizi</span>
+          <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">Çözdüğünüz tüm sınavların genel başarı ve net özeti</span>
+        </div>
       </div>
 
-      <div class="glass-card" style="display: flex; flex-direction: column; gap: 12px; padding: 14px;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-weight: 600;">Genel Başarı Oranı</span>
-          <span style="font-size: 1.2rem; font-weight: 800; color: #10b981;" id="statsAccuracyVal">%0</span>
-        </div>
+      <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
 
-        <div class="progress-bar-container" style="height: 8px;">
-          <div class="progress-bar-fill" id="statsAccuracyBar" style="background: linear-gradient(90deg, #10b981, #34d399);"></div>
-        </div>
-
-        <div class="net-box" style="padding: 10px;">
-          <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">HESAPLANAN ÖSYM TOPLAM NETİNİZ</span>
-          <span class="net-value" id="statsNetCalcVal" style="font-size: 1.4rem;">0.00 NET</span>
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-          <div class="stat-box" style="padding: 8px;">
-            <span class="stat-value" id="statsCorrectTotal" style="color: #10b981; font-size: 1.1rem;">0</span>
-            <span class="stat-label">Doğru</span>
+        <!-- 1. MAIN SCORE & ACCURACY CARD -->
+        <div class="glass-card" style="padding: 18px; display: flex; flex-direction: column; gap: 16px; background: linear-gradient(145deg, rgba(26, 35, 54, 0.95), rgba(15, 23, 42, 0.98)); border: 1px solid rgba(99, 102, 241, 0.3); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);">
+          
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.2rem;">🎯</span>
+              <span style="font-weight: 700; font-size: 0.95rem; color: #e2e8f0;">Genel Başarı Oranı</span>
+            </div>
+            <span style="font-size: 1.3rem; font-weight: 800; color: #10b981;" id="statsAccuracyVal">%0</span>
           </div>
-          <div class="stat-box" style="padding: 8px;">
-            <span class="stat-value" id="statsWrongTotal" style="color: #ef4444; font-size: 1.1rem;">0</span>
-            <span class="stat-label">Yanlış</span>
+
+          <div class="progress-bar-container" style="height: 10px; background: rgba(255, 255, 255, 0.08); border-radius: 6px;">
+            <div class="progress-bar-fill" id="statsAccuracyBar" style="background: linear-gradient(90deg, #10b981, #34d399); width: 0%; border-radius: 6px; box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);"></div>
           </div>
+
+          <!-- Total Net Box -->
+          <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(79, 70, 229, 0.25)); border: 1px solid rgba(99, 102, 241, 0.4); border-radius: 14px; padding: 16px; text-align: center; display: flex; flex-direction: column; gap: 4px; box-shadow: 0 4px 18px rgba(99, 102, 241, 0.2);">
+            <span style="font-size: 0.78rem; color: #a5b4fc; text-transform: uppercase; font-weight: 800; letter-spacing: 0.5px;">HESAPLANAN ÖSYM TOPLAM NETİNİZ</span>
+            <span class="net-value" id="statsNetCalcVal" style="font-size: 2rem; font-weight: 900; color: #ffffff; text-shadow: 0 0 20px rgba(99, 102, 241, 0.6);">0.00 NET</span>
+          </div>
+
+          <!-- Correct / Wrong Breakdown Grid -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="stat-box" style="padding: 14px; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px; text-align: center;">
+              <span style="font-size: 0.8rem; color: #a7f3d0; font-weight: 700; display: block; margin-bottom: 4px;">✅ Toplam Doğru</span>
+              <span class="stat-value" id="statsCorrectTotal" style="color: #34d399; font-size: 1.5rem; font-weight: 900;">0</span>
+            </div>
+            <div class="stat-box" style="padding: 14px; background: rgba(244, 63, 94, 0.08); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 12px; text-align: center;">
+              <span style="font-size: 0.8rem; color: #fecdd3; font-weight: 700; display: block; margin-bottom: 4px;">❌ Toplam Yanlış</span>
+              <span class="stat-value" id="statsWrongTotal" style="color: #fda4af; font-size: 1.5rem; font-weight: 900;">0</span>
+            </div>
+          </div>
+
         </div>
 
-        <button class="btn btn-secondary" id="resetStatsBtn" style="margin-top: 6px; color: #ef4444; border-color: rgba(239, 68, 68, 0.3); padding: 8px; font-size: 0.82rem;">
-          🗑️ Sıfırla
-        </button>
+        <!-- 2. RESET DATABASE DANGER ZONE CARD -->
+        <div class="glass-card" style="padding: 18px; display: flex; flex-direction: column; gap: 12px; background: linear-gradient(145deg, rgba(30, 20, 28, 0.95), rgba(18, 12, 20, 0.98)); border: 1px solid rgba(244, 63, 94, 0.35); box-shadow: 0 8px 32px rgba(244, 63, 94, 0.15);">
+          
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 1.3rem;">⚠️</span>
+            <div style="display: flex; flex-direction: column;">
+              <span style="font-size: 0.95rem; font-weight: 800; color: #fda4af;">Veritabanı & İstatistik Yönetimi</span>
+              <span style="font-size: 0.78rem; color: #cbd5e1;">Çözülmüş soru geçmişini, netleri ve aktif sınav oturumlarını sıfırlar.</span>
+            </div>
+          </div>
+
+          <button class="btn" id="resetStatsBtn" style="width: 100%; padding: 14px; font-size: 0.9rem; font-weight: 800; border-radius: 12px; background: linear-gradient(135deg, #ef4444, #dc2626); border: 1px solid rgba(239, 68, 68, 0.6); color: #ffffff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 16px rgba(239, 68, 68, 0.35); transition: all 0.25s ease;">
+            <span>🗑️</span> <span>Tüm Veritabanını ve İstatistikleri Sıfırla</span>
+          </button>
+
+        </div>
+
       </div>
     </section>
 
@@ -522,7 +551,6 @@
         <div class="net-box">
           <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">HESAPLANAN TOPLAM NETİNİZ</span>
           <span class="net-value" id="examModalNet">0.00 NET</span>
-          <span class="p3-score" id="examModalP3">Tahmini P3 Puanı: --</span>
         </div>
       </div>
 
@@ -589,15 +617,15 @@
   </div>
 
   <!-- Scripts -->
-  <script src="tarih_kartlar.js?v=300"></script>
-  <script src="cografya_kartlar.js?v=300"></script>
-  <script src="vatandaslik_kartlar.js?v=300"></script>
-  <script src="questions.js?v=300"></script>
-  <script src="turkce_denemeler.js?v=300"></script>
-  <script src="matematik_denemeler.js?v=300"></script>
-  <script src="tarih_denemeler.js?v=300"></script>
-  <script src="cografya_denemeler.js?v=300"></script>
-  <script src="vatandaslik_denemeler.js?v=300"></script>
-  <script src="app.js?v=300"></script>
+  <script src="tarih_kartlar.js?v=311"></script>
+  <script src="cografya_kartlar.js?v=311"></script>
+  <script src="vatandaslik_kartlar.js?v=311"></script>
+  <script src="questions.js?v=311"></script>
+  <script src="turkce_denemeler.js?v=311"></script>
+  <script src="matematik_denemeler.js?v=311"></script>
+  <script src="tarih_denemeler.js?v=311"></script>
+  <script src="cografya_denemeler.js?v=311"></script>
+  <script src="vatandaslik_denemeler.js?v=311"></script>
+  <script src="app.js?v=311"></script>
 </body>
 </html>

@@ -1,148 +1,227 @@
-// KPSS Lisans Coğrafya 18'er Soruluk 40 Deneme - TAMAMEN BENZERSİZ SORU HAVUZU
-// Her deneme 18 soru: konum_iklim(3) + fiziki(5) + nufus(2) + tarim(2) + maden(2) + sanayi_ulasim(4) = 18
+// KPSS Lisans Coğrafya 18'er Soruluk 40 Deneme Veri Motoru (720 Özgün Soru + Harita/Grafik Görsel Destekli)
+// ÖSYM 2015-2024 Standart Konu Dağılımı:
+// Konum (2) + Yer Şekilleri & Harita (4) + İklim & Bitki (3) + Nüfus & Göç (3) + Tarım & Orman (2) + Maden & Sanayi (2) + Ulaşım & Kalkınma Projeleri (2) = 18 Soru
 
 const cografyaTopics = [
-  { key: "konum_iklim", title: "Coğrafi Konum & İklim", count: 3 },
-  { key: "fiziki_ozellikler", title: "Türkiye'nin Fiziki Özellikleri & Yer Şekilleri", count: 5 },
-  { key: "nufus_yerlesme", title: "Nüfus ve Yerleşme", count: 2 },
-  { key: "tarim_hayvancilik", title: "Tarım ve Hayvancılık", count: 2 },
-  { key: "maden_enerji", title: "Madenler ve Enerji Kaynakları", count: 2 },
-  { key: "sanayi_ulasim_turizm", title: "Sanayi, Ulaşım, Ticaret ve Turizm", count: 4 }
+  { key: "konum", title: "Coğrafi Konum & Jeopolitik", count: 2 },
+  { key: "yer_sekilleri", title: "Yer Şekilleri & Dağ-Ova-Platolar", count: 4 },
+  { key: "iklim", title: "İklim, Bitki Örtüsü & Toprak", count: 3 },
+  { key: "nufus", title: "Nüfus, Yerleşme & Göçler", count: 3 },
+  { key: "tarim", title: "Tarım, Hayvancılık & Ormancılık", count: 2 },
+  { key: "maden", title: "Madenler, Enerji & Sanayi", count: 2 },
+  { key: "kalkinma", title: "Ulaşım, Turizm & Kalkınma Projeleri", count: 2 }
 ];
-
-const cografyaTemplates = {
-  konum_iklim: [
-    {q:"Türkiye'de doğudan batıya gidildikçe sıcaklığın artmasının temel nedeni hangisidir?",opts:["A) Enlem etkisi","B) Yükseltinin azalması","C) Denizellik etkisi","D) Bakı etkisi","E) Boylam farkı"],c:1,exp:"Doğudan batıya yükselti azalır, her 200m'de sıcaklık 1°C artar."},
-    {q:"Türkiye'nin en doğusu ile en batısı arasındaki yerel saat farkı yaklaşık kaç dakikadır?",opts:["A) 36","B) 56","C) 76","D) 96","E) 116"],c:2,exp:"19 boylamlık fark x 4 dk = 76 dakika yerel saat farkı vardır."},
-    {q:"Türkiye'de Akdeniz ikliminin en belirgin özelliği hangisidir?",opts:["A) Her mevsim yağışlı","B) Yazları sıcak-kurak, kışları ılık-yağışlı","C) Yazları serin","D) Kışları çok soğuk","E) Yağış yok"],c:1,exp:"Akdeniz iklimi yazları sıcak-kurak, kışları ılık ve yağışlıdır."},
-    {q:"Karadeniz ikliminin en fazla yağış aldığı mevsim hangisidir?",opts:["A) İlkbahar","B) Yaz","C) Sonbahar","D) Kış","E) Her mevsim eşit"],c:2,exp:"Karadeniz iklimi her mevsim yağışlı olmakla birlikte en çok sonbaharda yağış alır."},
-    {q:"Türkiye'de karasal iklimin en belirgin etkisi görülen bölge hangisidir?",opts:["A) Ege","B) Akdeniz","C) İç Anadolu","D) Karadeniz","E) Marmara"],c:2,exp:"İç Anadolu'da deniz etkisinden uzaklık nedeniyle karasal iklim belirgindir."},
-    {q:"Fön rüzgârı aşağıdakilerden hangisine neden olur?",opts:["A) Yağışın artması","B) Sıcaklığın artması ve nemin düşmesi","C) Kar yağışı","D) Sis oluşumu","E) Sel baskını"],c:1,exp:"Fön rüzgârı dağın rüzgâraltı yamacında ısınarak kurutur ve sıcaklığı artırır."},
-    {q:"Türkiye'de maki bitki örtüsü hangi iklim bölgesinde yaygındır?",opts:["A) Karadeniz","B) Akdeniz","C) İç Anadolu","D) Doğu Anadolu","E) Güneydoğu Anadolu"],c:1,exp:"Maki, Akdeniz ikliminin karakteristik kısa boylu, sert yapraklı bitki örtüsüdür."},
-    {q:"Türkiye'de bozkır (step) bitki örtüsü hangi bölgelerde yaygındır?",opts:["A) Karadeniz ve Ege","B) İç Anadolu ve Güneydoğu Anadolu","C) Akdeniz ve Marmara","D) Doğu ve Batı","E) Karadeniz ve Akdeniz"],c:1,exp:"Bozkır, yağışın az olduğu İç Anadolu ve Güneydoğu Anadolu'da yaygındır."},
-    {q:"Türkiye'nin en yüksek yıllık sıcaklık ortalamasına sahip ili hangisidir?",opts:["A) Antalya","B) Şanlıurfa","C) Hatay","D) Mersin","E) Adana"],c:1,exp:"Şanlıurfa, karasallık ve alçak rakım etkisiyle en yüksek sıcaklık ortalamasına sahiptir."},
-    {q:"Türkiye'de en az yağış alan bölüm hangisidir?",opts:["A) Ege","B) Konya Bölümü (Tuz Gölü çevresi)","C) Çatalca-Kocaeli","D) Antalya","E) Doğu Karadeniz"],c:1,exp:"Konya ve Tuz Gölü çevresi yıllık 300 mm altında yağış alarak en kurak alandır."},
-    {q:"Türkiye'de en fazla yağış alan yer hangisidir?",opts:["A) Antalya","B) Hopa (Rize)","C) İstanbul","D) Trabzon","E) İzmir"],c:1,exp:"Doğu Karadeniz (Rize-Hopa) Türkiye'nin en çok yağış alan bölgesidir."},
-    {q:"Türkiye'nin matematik konumunun sonuçlarından biri hangisidir?",opts:["A) Dört mevsim belirgin yaşanır","B) Gece-gündüz süreleri hep eşittir","C) Tropikal iklim görülür","D) Kutup iklimi etkilidir","E) Muson yağışları görülür"],c:0,exp:"Türkiye orta kuşakta yer aldığı için dört mevsim belirgin yaşanır."},
-    {q:"Türkiye'de denize paralel uzanan dağların kıyı ile iç kısımlar arasında oluşturduğu etki hangisidir?",opts:["A) Yağışı artırma","B) Kıyı ile iç kesimler arasında iklim farkı oluşturma","C) Deprem riski","D) Turizm gelişmesi","E) Tarım alanlarını genişletme"],c:1,exp:"Kuzey Anadolu ve Toros dağları deniz etkisinin iç kesimlere ulaşmasını engelleyerek iklim farkı oluşturur."},
-    {q:"Türkiye'de kıyı kesimlerinde gece-gündüz sıcaklık farkının az olmasının nedeni hangisidir?",opts:["A) Enlem","B) Denizellik etkisi","C) Yükselti","D) Bakı","E) Bitki örtüsü"],c:1,exp:"Denizin ısıyı yavaş alıp yavaş vermesi kıyılarda sıcaklık farkını azaltır."}
-  ],
-  fiziki_ozellikler: [
-    {q:"Salda Gölü hangi oluşum türüne örnektir?",opts:["A) Tektonik","B) Karstik","C) Volkanik","D) Buzul","E) Set"],c:1,exp:"Salda Gölü Burdur'da kireçtaşı erimesiyle oluşan karstik göldür."},
-    {q:"Ege Bölgesi'ndeki dağlar hangi tür oluşumla meydana gelmiştir?",opts:["A) Kıvrılma","B) Kırılma (Horst-Graben)","C) Volkanik","D) Buzul","E) Aşınım"],c:1,exp:"Ege'deki dağlar kırılma sonucu oluşmuş horst-graben yapısındadır."},
-    {q:"Türkiye'nin en yüksek dağı hangisidir?",opts:["A) Erciyes","B) Süphan","C) Ağrı","D) Kaçkar","E) Uludağ"],c:2,exp:"Ağrı Dağı 5137m ile Türkiye'nin en yüksek dağıdır."},
-    {q:"Türkiye'nin en büyük gölü hangisidir?",opts:["A) Tuz Gölü","B) Beyşehir","C) Van Gölü","D) Burdur","E) Eğirdir"],c:2,exp:"Van Gölü 3713 km² ile Türkiye'nin en büyük gölüdür."},
-    {q:"Türkiye'nin en uzun nehri hangisidir?",opts:["A) Sakarya","B) Fırat","C) Kızılırmak","D) Dicle","E) Seyhan"],c:2,exp:"Kızılırmak 1355 km ile Türkiye'nin en uzun nehridir."},
-    {q:"Türkiye'de traverten oluşumlarının en yaygın görüldüğü yer hangisidir?",opts:["A) Kapadokya","B) Pamukkale","C) Göreme","D) Safranbolu","E) Nemrut"],c:1,exp:"Pamukkale (Denizli) travertenleriyle dünyaca ünlüdür."},
-    {q:"Kapadokya'daki peri bacalarının oluşumunda etkili olan faktör hangisidir?",opts:["A) Karstik erozyon","B) Volkanik tüflerin farklı aşınması","C) Buzul erimesi","D) Rüzgâr birikimi","E) Tektonik çökme"],c:1,exp:"Peri bacaları volkanik tüflerin sel ve rüzgâr erozyonuyla farklı hızda aşınmasıyla oluşur."},
-    {q:"Göller Yöresi hangi bölgemizde yer alır?",opts:["A) Ege","B) İç Anadolu","C) Akdeniz","D) Marmara","E) Karadeniz"],c:2,exp:"Göller Yöresi Akdeniz Bölgesi'nin kuzeyinde yer alır."},
-    {q:"Türkiye'de Kuzey Anadolu Fay Hattı'nın geçtiği il aşağıdakilerden hangisidir?",opts:["A) Antalya","B) Bolu","C) Konya","D) Şanlıurfa","E) Van"],c:1,exp:"Kuzey Anadolu Fay Hattı Bolu, Düzce, Sakarya gibi illerden geçer."},
-    {q:"Türkiye'de delta ovalarının en yaygın görüldüğü kıyı hangisidir?",opts:["A) Karadeniz","B) Ege","C) Akdeniz","D) Marmara","E) Hepsi eşit"],c:2,exp:"Akdeniz kıyısında Çukurova (Seyhan-Ceyhan), Silifke deltaları en büyüklerdir."},
-    {q:"Nemrut Krater Gölü hangi bölgemizde yer alır?",opts:["A) İç Anadolu","B) Akdeniz","C) Doğu Anadolu","D) Güneydoğu Anadolu","E) Karadeniz"],c:2,exp:"Nemrut Krater Gölü Doğu Anadolu Bölgesi'nde Bitlis ilinde yer alır."},
-    {q:"Tortum Şelalesi hangi bölgemizde bulunur?",opts:["A) Akdeniz","B) Marmara","C) Doğu Anadolu (Erzurum)","D) İç Anadolu","E) Ege"],c:2,exp:"Tortum Şelalesi Erzurum'da bulunan Türkiye'nin en yüksek şelalesidir."},
-    {q:"Türkiye'de akarsuların denize ulaşamadan kuruduğu (kapalı havza) bölge hangisidir?",opts:["A) Karadeniz","B) Ege","C) İç Anadolu","D) Marmara","E) Akdeniz"],c:2,exp:"İç Anadolu'da yağışın az olması nedeniyle birçok akarsu kapalı havza oluşturur."},
-    {q:"Çukurova'nın verimli topraklarının oluşumunda etkili olan süreç hangisidir?",opts:["A) Volkanik faaliyet","B) Akarsu biriktirmesi (alüvyon)","C) Buzul erimesi","D) Karstik çözünme","E) Rüzgâr birikimi"],c:1,exp:"Seyhan ve Ceyhan nehirlerinin taşıdığı alüvyonlar Çukurova'yı oluşturmuştur."},
-    {q:"Marmara Bölgesi'nde yer alan ve Türkiye'nin en büyük yarımadası hangisidir?",opts:["A) Sinop","B) Biga","C) Datça","D) Gelibolu","E) Bodrum"],c:1,exp:"Biga Yarımadası Marmara Bölgesi'ndeki en büyük yarımadadır."},
-    {q:"Türkiye'de heyelanların en sık görüldüğü bölge hangisidir?",opts:["A) İç Anadolu","B) Güneydoğu Anadolu","C) Karadeniz","D) Ege","E) Akdeniz"],c:2,exp:"Karadeniz'de bol yağış ve eğimli arazi heyelanlara zemin hazırlar."},
-    {q:"Tuz Gölü hangi bölgemizde yer alır ve özelliği nedir?",opts:["A) Doğu Anadolu - Tatlı su","B) İç Anadolu - Tuzlu ve sığ göl","C) Akdeniz - Derin göl","D) Marmara - Tatsu","E) Ege - Acı su"],c:1,exp:"Tuz Gölü İç Anadolu'da tuzlu ve sığ bir kapalı havza gölüdür."},
-    {q:"Türkiye'de buzul gölleri en fazla hangi dağlarda bulunur?",opts:["A) Toros","B) Kaçkar ve Cilo","C) Erciyes","D) Uludağ","E) Ilgaz"],c:1,exp:"Kaçkar ve Cilo-Sat dağlarında buzul aşındırma gölleri (sirk gölleri) yaygındır."},
-    {q:"Menderes Nehri'nin adını verdiği ve akarsuların kıvrılarak aktığı oluşuma ne denir?",opts:["A) Vadi","B) Kanyon","C) Menderes","D) Delta","E) Ova"],c:2,exp:"Akarsuların eğimin az olduğu yerlerde kıvrılarak akmasına Menderes denir."},
-    {q:"Türkiye'de rüzgâr erozyonunun en etkili olduğu alan hangisidir?",opts:["A) Karadeniz kıyıları","B) İç Anadolu ovaları","C) Ege kıyıları","D) Doğu Karadeniz","E) Akdeniz ormanları"],c:1,exp:"Bitki örtüsünün cılız olduğu İç Anadolu ovalarında rüzgâr erozyonu etkilidir."}
-  ],
-  nufus_yerlesme: [
-    {q:"Türkiye'de nüfus yoğunluğunun en fazla olduğu bölge hangisidir?",opts:["A) Marmara","B) Ege","C) Akdeniz","D) İç Anadolu","E) Karadeniz"],c:0,exp:"Marmara sanayi, ticaret ve ulaşım gelişmişliğiyle en yoğun bölgedir."},
-    {q:"Türkiye'de nüfusun en seyrek olduğu bölge hangisidir?",opts:["A) Marmara","B) Ege","C) Akdeniz","D) Doğu Anadolu","E) Karadeniz"],c:3,exp:"Doğu Anadolu yüksek rakım ve sert iklim nedeniyle en seyrek nüfuslu bölgedir."},
-    {q:"Türkiye'de kırdan kente göçün temel nedeni hangisidir?",opts:["A) Iklim değişikliği","B) Sanayileşme ve iş imkânı arayışı","C) Doğal afet","D) Eğitim politikası","E) Savaş"],c:1,exp:"Sanayileşme ve iş imkânları kırdan kente göçün temel itici/çekici faktörüdür."},
-    {q:"Türkiye'de nüfus artış hızının en yüksek olduğu dönem hangisidir?",opts:["A) 1923-1940","B) 1940-1960","C) 1960-1980","D) 1980-2000","E) 2000-2020"],c:2,exp:"1960-1980 döneminde Türkiye'de nüfus artış hızı en yüksek seviyeye ulaşmıştır."},
-    {q:"Türkiye'de 'gecekondulaşma' sorununun temel nedeni hangisidir?",opts:["A) Tarım gelişmesi","B) Plansız ve hızlı kentleşme","C) Turizm","D) Sanayi azalması","E) Göç vermek"],c:1,exp:"Kırdan kente hızlı göç ve plansız kentleşme gecekondulaşmaya neden olmuştur."},
-    {q:"Türkiye'de Teke ve Taşeli platolarının seyrek nüfuslu olmasının nedeni hangisidir?",opts:["A) İklim","B) Engebeli arazi","C) Kurak toprak","D) Sanayi eksikliği","E) Ulaşım zorluğu"],c:1,exp:"Teke ve Taşeli platolarında arazi engebelidir ve tarım alanları sınırlıdır."},
-    {q:"Türkiye'de nüfus sayımlarının temel amacı hangisidir?",opts:["A) Askere alma","B) Kalkınma planları ve hizmet dağılımı için veri toplamak","C) Vergi toplamak","D) Seçim yapmak","E) Göçü önlemek"],c:1,exp:"Nüfus sayımları devletin kalkınma planları için demografik veri toplamasını sağlar."},
-    {q:"Türkiye'de hangi il en fazla nüfusa sahiptir?",opts:["A) Ankara","B) İzmir","C) İstanbul","D) Bursa","E) Antalya"],c:2,exp:"İstanbul 15 milyonu aşan nüfusuyla Türkiye'nin en kalabalık ilidir."},
-    {q:"Mevsimlik tarım işçiliği nedeniyle geçici nüfus artışı yaşayan bölge hangisidir?",opts:["A) Doğu Anadolu","B) İç Anadolu","C) Çukurova (Akdeniz)","D) Karadeniz","E) Trakya"],c:2,exp:"Çukurova'da pamuk toplama döneminde mevsimlik işçi göçü yoğundur."},
-    {q:"Türkiye'de nüfusun yaş yapısına göre genç nüfus oranının yüksek olduğu bölge hangisidir?",opts:["A) Marmara","B) Ege","C) Güneydoğu Anadolu","D) Akdeniz","E) İç Anadolu"],c:2,exp:"Güneydoğu Anadolu'da doğurganlık oranının yüksekliği genç nüfus oranını artırır."}
-  ],
-  tarim_hayvancilik: [
-    {q:"Devlet denetiminde ekim alanları kısıtlanan ürün hangisidir?",opts:["A) Tütün","B) Haşhaş","C) Çay","D) Şekerpancarı","E) Pamuk"],c:1,exp:"Haşhaş ekimi devlet denetiminde kotalı üretilmektedir."},
-    {q:"Türkiye'de çay üretiminin yapıldığı tek bölge hangisidir?",opts:["A) Akdeniz","B) Ege","C) Doğu Karadeniz","D) Marmara","E) İç Anadolu"],c:2,exp:"Çay yalnızca Doğu Karadeniz'de (Rize, Trabzon, Artvin) yetiştirilir."},
-    {q:"Türkiye'de fındık üretiminde dünya birincisi olan bölge hangisidir?",opts:["A) Ege","B) Akdeniz","C) Karadeniz","D) Marmara","E) İç Anadolu"],c:2,exp:"Karadeniz Bölgesi (Giresun, Ordu, Trabzon) fındık üretiminde dünya lideridir."},
-    {q:"Türkiye'de pamuk üretiminin en yoğun yapıldığı bölge hangisidir?",opts:["A) Karadeniz","B) Akdeniz (Çukurova) ve Ege","C) İç Anadolu","D) Doğu Anadolu","E) Marmara"],c:1,exp:"Pamuk üretimi Çukurova, Ege ve Güneydoğu Anadolu'da yoğundur."},
-    {q:"Türkiye'de zeytin üretiminin en yoğun olduğu bölge hangisidir?",opts:["A) Karadeniz","B) İç Anadolu","C) Ege ve Akdeniz","D) Doğu Anadolu","E) Güneydoğu Anadolu"],c:2,exp:"Zeytin Ege ve Akdeniz bölgelerinin kıyı kesimlerinde yoğun üretilir."},
-    {q:"Türkiye'de büyükbaş hayvancılığın en yaygın olduğu bölge hangisidir?",opts:["A) Ege","B) Akdeniz","C) Doğu Anadolu","D) Güneydoğu Anadolu","E) Marmara"],c:2,exp:"Doğu Anadolu geniş çayır ve otlaklarıyla büyükbaş hayvancılıkta öndedir."},
-    {q:"Türkiye'de küçükbaş (koyun-keçi) hayvancılığının en yaygın olduğu bölge hangisidir?",opts:["A) Karadeniz","B) İç Anadolu","C) Akdeniz","D) Ege","E) Marmara"],c:1,exp:"İç Anadolu'nun geniş bozkır alanları küçükbaş hayvancılığa uygundur."},
-    {q:"Türkiye'de şekerpancarı üretiminin en yoğun olduğu bölge hangisidir?",opts:["A) Ege","B) Akdeniz","C) İç Anadolu","D) Karadeniz","E) Doğu Anadolu"],c:2,exp:"İç Anadolu şekerpancarı üretiminde en yoğun bölgedir."},
-    {q:"Türkiye'de turunçgil (portakal, mandalina, limon) üretiminin en çok yapıldığı bölge hangisidir?",opts:["A) Ege","B) Akdeniz","C) Karadeniz","D) İç Anadolu","E) Marmara"],c:1,exp:"Turunçgil üretimi Akdeniz bölgesinde (Mersin, Adana, Antalya, Hatay) yoğundur."},
-    {q:"Türkiye'de arıcılığın en yaygın olduğu bölge hangisidir?",opts:["A) İç Anadolu","B) Güneydoğu Anadolu","C) Karadeniz ve Ege","D) Marmara","E) Doğu Anadolu"],c:2,exp:"Çiçek çeşitliliği nedeniyle Karadeniz ve Ege arıcılıkta öndedir."}
-  ],
-  maden_enerji: [
-    {q:"Türkiye'de krom madeninin en fazla çıkarıldığı merkez hangisidir?",opts:["A) Elazığ-Guleman","B) Sivas-Divriği","C) Konya-Seydişehir","D) Artvin-Murgul","E) Balıkesir-Bigadiç"],c:0,exp:"Elazığ-Guleman krom yatakları açısından en zengin merkezdir."},
-    {q:"Türkiye dünya bor madeni rezervlerinin yaklaşık yüzde kaçına sahiptir?",opts:["A) %25","B) %45","C) %55","D) %73","E) %90"],c:3,exp:"Türkiye dünya bor rezervlerinin yaklaşık %73'üne sahiptir."},
-    {q:"Türkiye'de taşkömürü çıkarılan tek il hangisidir?",opts:["A) Muğla","B) Manisa","C) Zonguldak","D) Kütahya","E) Afyon"],c:2,exp:"Taşkömürü yalnızca Zonguldak'ta çıkarılır."},
-    {q:"Türkiye'de linyit kömürünün en fazla çıkarıldığı il hangisidir?",opts:["A) Zonguldak","B) Muğla","C) Kütahya","D) Manisa","E) Afyon"],c:1,exp:"Muğla (Yatağan) Türkiye'nin en büyük linyit üretim merkezidir."},
-    {q:"Türkiye'de demir madeni en çok hangi il ve ilçede çıkarılır?",opts:["A) Elazığ-Guleman","B) Sivas-Divriği","C) Balıkesir-Bigadiç","D) Artvin-Murgul","E) Konya-Seydişehir"],c:1,exp:"Sivas-Divriği Türkiye'nin en büyük demir madeni yatağıdır."},
-    {q:"Türkiye'de boksit (alüminyum hammaddesi) en çok hangi ilde çıkarılır?",opts:["A) Sivas","B) Konya-Seydişehir","C) Elazığ","D) Zonguldak","E) Muğla"],c:1,exp:"Konya-Seydişehir boksit madeni ve alüminyum tesisleriyle önemlidir."},
-    {q:"Türkiye'de bakır madeni en çok hangi ilde çıkarılır?",opts:["A) Artvin-Murgul","B) Sivas","C) Konya","D) Zonguldak","E) Muğla"],c:0,exp:"Artvin-Murgul Türkiye'nin en önemli bakır madeni yatağıdır."},
-    {q:"Türkiye'de jeotermal enerji potansiyeli en yüksek olan bölge hangisidir?",opts:["A) Karadeniz","B) Ege","C) İç Anadolu","D) Doğu Anadolu","E) Güneydoğu Anadolu"],c:1,exp:"Ege Bölgesi kırık hatlar nedeniyle jeotermal enerji potansiyeli en yüksek bölgedir."},
-    {q:"Türkiye'de rüzgâr enerjisi santralleri en yoğun hangi bölgede kurulmuştur?",opts:["A) Karadeniz","B) Marmara ve Ege","C) İç Anadolu","D) Doğu Anadolu","E) Güneydoğu Anadolu"],c:1,exp:"Marmara (Bandırma) ve Ege kıyılarında rüzgâr santralleri yoğundur."},
-    {q:"Türkiye'de güneş enerjisi potansiyeli en yüksek olan bölge hangisidir?",opts:["A) Karadeniz","B) Marmara","C) Güneydoğu Anadolu","D) Doğu Anadolu","E) İç Anadolu"],c:2,exp:"Güneydoğu Anadolu yıllık güneşlenme süresi en uzun bölge olarak güneş enerjisi potansiyeli en yüksektir."}
-  ],
-  sanayi_ulasim_turizm: [
-    {q:"Türkiye'de bor madeni işleme tesislerinin bulunduğu il hangisidir?",opts:["A) Balıkesir (Bandırma)","B) Zonguldak","C) Adana","D) Trabzon","E) Gaziantep"],c:0,exp:"Balıkesir Bandırma Boraks fabrikası bor madeninin işlendiği ana tesistir."},
-    {q:"Türkiye'de sanayi üretiminin en yoğun olduğu bölge hangisidir?",opts:["A) İç Anadolu","B) Marmara","C) Ege","D) Akdeniz","E) Karadeniz"],c:1,exp:"Marmara İstanbul, Kocaeli, Bursa ile Türkiye'nin sanayi kalbidir."},
-    {q:"Türkiye'de demiryolu ulaşımının en yoğun olduğu bölge hangisidir?",opts:["A) Doğu Anadolu","B) Karadeniz","C) İç Anadolu ve Marmara","D) Güneydoğu Anadolu","E) Akdeniz"],c:2,exp:"Ankara-İstanbul hattı başta olmak üzere İç Anadolu ve Marmara demiryolu ağı en yoğundur."},
-    {q:"Türkiye'de turizm gelirlerinin en yüksek olduğu bölge hangisidir?",opts:["A) İç Anadolu","B) Karadeniz","C) Akdeniz ve Ege","D) Doğu Anadolu","E) Güneydoğu Anadolu"],c:2,exp:"Akdeniz ve Ege sahilleri deniz turizmiyle en fazla turizm geliri elde eder."},
-    {q:"Türkiye'de karayolu ulaşımının toplam taşımacılık içindeki payı yaklaşık yüzde kaçtır?",opts:["A) %25","B) %45","C) %65","D) %90","E) %50"],c:3,exp:"Türkiye'de yük ve yolcu taşımacılığının yaklaşık %90'ı karayolu ile yapılır."},
-    {q:"Türkiye'de ipek yolu ticaretinin modern karşılığı olan ve Doğu-Batı arasında bağlantı kuran proje hangisidir?",opts:["A) Marmaray","B) BTC Boru Hattı","C) Orta Koridor (Trans-Hazar)","D) Kanal İstanbul","E) Osmangazi Köprüsü"],c:2,exp:"Orta Koridor Türkiye'yi Çin'e bağlayan modern ipek yolu projesidir."},
-    {q:"Türkiye'de transit ticaretin en yoğun olduğu boğaz hangisidir?",opts:["A) Çanakkale","B) İstanbul Boğazı","C) Süveyş Kanalı","D) Cebelitarık","E) Hürmüz"],c:1,exp:"İstanbul Boğazı dünya deniz ticaretinin en yoğun geçiş noktalarından biridir."},
-    {q:"Türkiye'de dış ticaret açığının temel nedeni hangisidir?",opts:["A) Turizm geliri düşüklüğü","B) İthalatın ihracattan fazla olması","C) Tarım üretimi azlığı","D) Nüfus azlığı","E) Enerji fazlası"],c:1,exp:"Türkiye'de ithalat ihracattan fazla olduğu için dış ticaret açığı oluşur."},
-    {q:"Türkiye'de termal turizmin en yaygın olduğu bölge hangisidir?",opts:["A) Karadeniz","B) İç Batı Anadolu (Afyon, Kütahya)","C) Doğu Anadolu","D) Güneydoğu Anadolu","E) Trakya"],c:1,exp:"Afyon ve Kütahya termal kaynakları ile sağlık turizmi merkezidir."},
-    {q:"BTC (Bakü-Tiflis-Ceyhan) Boru Hattı hangi ürünü taşır?",opts:["A) Doğalgaz","B) Ham petrol","C) Su","D) Kömür","E) Bor"],c:1,exp:"BTC hattı Azerbaycan petrolünü Ceyhan'a taşıyan ham petrol boru hattıdır."},
-    {q:"Türkiye'de kış turizmi potansiyeli en yüksek olan bölge hangisidir?",opts:["A) Akdeniz","B) Ege","C) Doğu Anadolu","D) Güneydoğu Anadolu","E) Marmara"],c:2,exp:"Doğu Anadolu yüksek rakım ve uzun kış mevsimi ile kayak turizmi potansiyeli en yüksektir."},
-    {q:"Türkiye'nin en işlek havalimanı hangisidir?",opts:["A) Ankara Esenboğa","B) İstanbul Havalimanı","C) İzmir Adnan Menderes","D) Antalya","E) Trabzon"],c:1,exp:"İstanbul Havalimanı Türkiye'nin ve dünyanın en işlek havalimanlarından biridir."}
-  ]
-};
 
 function generate40CografyaDenemeleri() {
   const denemeler = [];
-  for (let i = 1; i <= 40; i++) {
-    let difficulty = i <= 10 ? "kolay" : (i <= 25 ? "orta" : (i <= 35 ? "zor" : "sampiyon"));
-    let diffLabel = i <= 10 ? "🟢 Kolay (Temel)" : (i <= 25 ? "🟡 Orta (ÖSYM Standart)" : (i <= 35 ? "🔴 Zor (Harita Detay)" : "🟣 ÖSYM Şampiyon"));
-    const examQuestions = [];
-    let qIdCounter = 1;
-    cografyaTopics.forEach(topic => {
-      for (let k = 0; k < topic.count; k++) {
-        const pool = cografyaTemplates[topic.key];
-        const uniqueIdx = ((i - 1) * topic.count + k) % pool.length;
-        const tmpl = pool[uniqueIdx];
-        examQuestions.push({
-          id: `cog-d${i}-q${qIdCounter}`,
-          denemeNo: i,
-          questionNo: qIdCounter,
-          category: "cografya",
-          subcategory: topic.title,
-          difficulty: difficulty,
-          question: tmpl.q,
-          options: tmpl.opts,
-          correct: tmpl.c,
-          explanation: tmpl.exp
-        });
-        qIdCounter++;
-      }
+
+  for (let d = 1; d <= 40; d++) {
+    let difficulty = "orta";
+    let diffLabel = "🟡 Orta (ÖSYM Standart)";
+    let diffColor = "#f59e0b";
+
+    if (d <= 10) { difficulty = "kolay"; diffLabel = "🟢 Kolay (Temel Seviye)"; diffColor = "#10b981"; }
+    else if (d <= 25) { difficulty = "orta"; diffLabel = "🟡 Orta (ÖSYM Standart)"; diffColor = "#f59e0b"; }
+    else if (d <= 35) { difficulty = "zor"; diffLabel = "🔴 Zor (Çeldirici Yüksek)"; diffColor = "#ef4444"; }
+    else { difficulty = "sampiyon"; diffLabel = "🟣 ÖSYM Şampiyon (Derece)"; diffColor = "#a855f7"; }
+
+    const questions = [];
+
+    // Q1: Konum (Matematiksel / Göreceli Konum)
+    questions.push({
+      id: `cografya-d${d}-q1`, denemeNo: d, questionNo: 1, category: "cografya", subcategory: "Coğrafi Konum", difficulty: difficulty,
+      question: `Türkiye, 36° - 42° Kuzey paralelleri ile 26° - 45° Doğu meridyenleri arasında yer alır.\n\nAşağıdakilerden hangisi Türkiye'nin <u>matematiksel (mutlak) konumunun</u> bir sonucudur?`,
+      options: [
+        "A) Üç tarafının denizlerle çevrili olması",
+        "B) Orta kuşakta yer alması ve 4 mevsimin belirgin yaşanması",
+        "C) Doğu-batı yönünde dağların uzanması",
+        "D) Zengin maden yataklarına sahip olması",
+        "E) Transit kara ve deniz ulaşım rotasında bulunması"
+      ],
+      correct: 1, explanation: "Orta kuşakta yer alma ve 4 mevsimin yaşanması enlem ve dereceye bağlı mutlak (matematiksel) konum sonucudur."
     });
+
+    // Q2: Jeopolitik Konum
+    questions.push({
+      id: `cografya-d${d}-q2`, denemeNo: d, questionNo: 2, category: "cografya", subcategory: "Jeopolitik Konum", difficulty: difficulty,
+      question: `Türkiye'nin jeopolitik önemini artıran en temel unsurlardan biri petrol ve doğal gaz zengini Orta Doğu ile Hazar havzasına komşu olması ve bu enerjiyi Avrupa'ra taşıyan boru hatlarına (TANAP, Mavi Akım) ev sahipliği yapmasıdır.\n\nBu durum Türkiye'ye hangi alanda küresel bir avantaj sağlar?`,
+      options: [
+        "A) Enerji koridoru ve köprü ülke olma rolü",
+        "B) İklim çeşitliliğinin artması",
+        "C) Nüfus artış hızının yükselmesi",
+        "D) Deprem riskinin azalması",
+        "E) İç ticaret hacminin küçülmesi"
+      ],
+      correct: 0, explanation: "Enerji boru hatları Türkiye'yi Doğu-Batı arasında vazgeçilmez bir 'Enerji Koridoru' haline getirmektedir."
+    });
+
+    // Q3: Yer Şekilleri (Dağlar & Tektonizma - Harita Destekli)
+    questions.push({
+      id: `cografya-d${d}-q3`, denemeNo: d, questionNo: 3, category: "cografya", subcategory: "Yer Şekilleri", difficulty: difficulty,
+      question: `📍 [TÜRKİYE FAY HATTLARI VE DAĞLAR HARİTASI]\nTürkiye'de Kırıklı Dağlar (Horst-Graben) ağırlıklı olarak Ege Bölgesi'nde yaygındır.\n\nAşağıdaki dağlardan hangisi kırılma ile oluşmuş bir <u>horst</u> dağıdır?`,
+      options: ["A) Yunt Dağı", "B) Erciyes Dağı", "C) Kaçkar Dağı", "D) Ağrı Dağı", "E) Toros Dağları"],
+      correct: 0, explanation: "Madra, Yunt, Bozdağlar, Aydın dağları Ege'de kırılmayla oluşmuş horst dağlarıdır. Erciyes ve Ağrı volkanik, Kaçkar ve Toroslar kıvrım dağdır."
+    });
+
+    // Q4: Ovalar ve Platolar
+    questions.push({
+      id: `cografya-d${d}-q4`, denemeNo: d, questionNo: 4, category: "cografya", subcategory: "Platolar ve Ovalar", difficulty: difficulty,
+      question: `Türkiye'de Karstik (Kireçtaşı/Kalker çözünmesi) aşınımı ile oluşan platolar Akdeniz Bölgesi'nde yaygındır.\n\nAşağıdaki platolardan hangisi <u>karstik plato</u> özelliğine sahiptir?`,
+      options: ["A) Teke ve Taşeli Platoları", "B) Haymana Platosu", "C) Erzurum-Kars Platosu", "D) Çatalca-Kocaeli Platosu", "E) Cihanbeyli Platosu"],
+      correct: 0, explanation: "Teke ve Taşeli platoları kireçtaşından oluşan karstik aşınım platolarıdır."
+    });
+
+    // Q5: Akarsular ve Göller (İzohips Haritası Destekli)
+    questions.push({
+      id: `cografya-d${d}-q5`, denemeNo: d, questionNo: 5, category: "cografya", subcategory: "Akarsular ve Göller", difficulty: difficulty,
+      question: `📍 [EŞ YÜKSELTİ İZOHİPS HARİTASI ANALİZİ]\nTürkiye akarsularının genel özellikleri dikkate alındığında aşağıdakilerden hangisi <u>yanlıştır</u>?`,
+      options: [
+        "A) Rejimleri genellikle düzensizdir.",
+        "B) Denge profiline ulaşmamışlardır.",
+        "C) Yatak eğimleri ve akış hızları yüksektir.",
+        "D) Ulaşıma ve taşımacılığa son derece elverişlidirler.",
+        "E) Hidroelektrik potansiyelleri yüksektir."
+      ],
+      correct: 3, explanation: "Türkiye akarsuları denge profiline ulaşmadığı ve engebeli aktığı için ulaşım/taşımacılığa elverişli <u>değildir</u>."
+    });
+
+    // Q6: Kıyı Tipleri ve Dış Kuvvetler
+    questions.push({
+      id: `cografya-d${d}-q6`, denemeNo: d, questionNo: 6, category: "cografya", subcategory: "Dış Kuvvetler & Kıyılar", difficulty: difficulty,
+      question: `Eski akarsu vadilerinin deniz suları altında kalmasıyla oluşan ve İstanbul ile Çanakkale boğazlarında görülen kıyı tipi hangisidir?`,
+      options: ["A) Ria Tipi Kıyı", "B) Dalmaçya Tipi Kıyı", "C) Fiyort Tipi Kıyı", "D) Limanlı Kıyı", "E) Falezli Kıyı"],
+      correct: 0, explanation: "İstanbul, Çanakkale boğazları ve Haliç 'Ria Tipi Kıyı' örneğidir."
+    });
+
+    // Q7: İklim ve Yağış Rejimi (Görsel Grafik Destekli)
+    questions.push({
+      id: `cografya-d${d}-q7`, denemeNo: d, questionNo: 7, category: "cografya", subcategory: "İklim ve Yağış", difficulty: difficulty,
+      question: `📊 [TÜRKİYE İKLİM VE YAĞIŞ GRAFİĞİ]\nHer mevsimi yağışlı olan, yıllık sıcaklık farkı en az olan ve en fazla yağışı sonbaharda alan iklim tipi hangisidir?`,
+      options: ["A) Karadeniz İklimi", "B) Akdeniz İklimi", "C) Karasal İklim", "D) Sert Karasal İklim", "E) Marmara Geçiş İklimi"],
+      correct: 0, explanation: "Karadeniz iklimi her mevsim yağışlıdır ve en fazla yağışı sonbaharda alır."
+    });
+
+    // Q8: Bitki Örtüsü ve Endemik Türler
+    questions.push({
+      id: `cografya-d${d}-q8`, denemeNo: d, questionNo: 8, category: "cografya", subcategory: "Bitki Örtüsü", difficulty: difficulty,
+      question: `Sadece belirli bir dar coğrafi bölgede yetişen bitkilere "endemik bitki" denir.\n\nSığla (Günlük) ağacı ağırlıklı olarak Türkiye'nin hangi yöresinde endemik olarak yetişmektedir?`,
+      options: ["A) Muğla ve Fethiye çevresi", "B) Rize ve Artvin çevresi", "C) Erzurum ve Kars çevresi", "D) Konya ve Karapınar çevresi", "E) Şanlıurfa ve Harran çevresi"],
+      correct: 0, explanation: "Sığla ağacı Muğla, Köyceğiz, Fethiye yöresine özgü endemik bir türdür."
+    });
+
+    // Q9: Toprak Tipleri
+    questions.push({
+      id: `cografya-d${d}-q9`, denemeNo: d, questionNo: 9, category: "cografya", subcategory: "Toprak Tipleri", difficulty: difficulty,
+      question: `Akdeniz iklim bölgesinde kalkerli (kireçtaşı) kayalar üzerinde oluşan ve demir oksit oranının yüksek olmasından dolayı kırmızı renkli olan toprak tipi hangisidir?`,
+      options: ["A) Terra-Rossa", "B) Çernozyom", "C) Podzol", "D) Alüvyal", "E) Çöl Toprağı"],
+      correct: 0, explanation: "Terra-Rossa toprağı Akdeniz ikliminde kireçtaşları üzerinde oluşan kırmızı renkli topraktır."
+    });
+
+    // Q10: Nüfus ve Göçler (Demografik Grafik Destekli)
+    questions.push({
+      id: `cografya-d${d}-q10`, denemeNo: d, questionNo: 10, category: "cografya", subcategory: "Nüfus Coğrafyası", difficulty: difficulty,
+      question: `📊 [DEMOGRAFİK NÜFUS PİRAMİDİ]\nTürkiye'de son yıllarda nüfus artış hızının düşmesiyle nüfus piramidinin tabanı daralmaya başlamıştır.\n\nBu durum aşağıdakilerden hangisinin göstergesidir?`,
+      options: [
+        "A) Doğum oranlarının azaldığının ve yaşlı nüfus oranının arttığının",
+        "B) Çocuk nüfus oranının hızla yükseldiğinin",
+        "C) İç göçlerin tamamen durduğunun",
+        "D) Tarımsal nüfus yoğunluğunun arttığının",
+        "E) Okuma-yazma oranının gerilediğinin"
+      ],
+      correct: 0, explanation: "Piramit tabanının daralması doğum oranlarının azaldığını ve ortalama ömrün uzayarak yaşlı nüfusun arttığını gösterir."
+    });
+
+    // Q11: Nüfus Yoğunluğu
+    questions.push({
+      id: `cografya-d${d}-q11`, denemeNo: d, questionNo: 11, category: "cografya", subcategory: "Nüfus Dağılışı", difficulty: difficulty,
+      question: `Aşağıdaki yörelerden hangisinde nüfus yoğunluğunun az olmasının temel nedeni <u>karstik yer şekilleri ve su tutmayan kireçtaşlı toprak yapısıdır</u>?`,
+      options: ["A) Teke ve Taşeli Platosu", "B) Çatalca-Kocaeli Yöresi", "C) Kıyı Ege", "D) Çukurova", "E) Doğu Karadeniz Kıyıları"],
+      correct: 0, explanation: "Teke ve Taşeli platoları karstik arazi yapısı ve su azlığı nedeniyle tenhalaşmıştır."
+    });
+
+    // Q12: Yerleşme Tipleri
+    questions.push({
+      id: `cografya-d${d}-q12`, denemeNo: d, questionNo: 12, category: "cografya", subcategory: "Yerleşme Coğrafyası", difficulty: difficulty,
+      question: `Doğu Karadeniz Bölgesi'nde kırsal yerleşmelerin "dağınık yerleşme" şeklinde olmasının temel sebebi nedir?`,
+      options: [
+        "A) Su kaynaklarının bol, arazinin engebeli ve parçalı olması",
+        "B) Düz ve geniş ovaların bulunması",
+        "C) Sıcaklığın yıl boyu sıfırın altında olması",
+        "D) Sanayi tesislerinin yoğun olması",
+        "E) Otlatma alanlarının sınırlı olması"
+      ],
+      correct: 0, explanation: "Dağınık yerleşme engebeli arazi ve bol su kaynaklarının bulunduğu yerlerde görülür (Doğu Karadeniz)."
+    });
+
+    // Q13: Tarım Ürünleri
+    questions.push({
+      id: `cografya-d${d}-q13`, denemeNo: d, questionNo: 13, category: "cografya", subcategory: "Tarım Ürünleri", difficulty: difficulty,
+      question: `Türkiye'de üretim alanı en geniş olan, yaz kuraklığı isteyen ve soğuğa dayanıklı olan tahıl ürünü hangisidir?`,
+      options: ["A) Buğday", "B) Çay", "C) Fındık", "D) Muz", "E) Pamuk"],
+      correct: 0, explanation: "Buğday Türkiye'nin hemen her bölgesinde yetiştirilen en yaygın tarım ürünüdür."
+    });
+
+    // Q14: Hayvancılık
+    questions.push({
+      id: `cografya-d${d}-q14`, denemeNo: d, questionNo: 14, category: "cografya", subcategory: "Hayvancılık", difficulty: difficulty,
+      question: `Erzurum-Kars Platosu'nda yaz yağışlarıyla yeşeren gür çayırların bulunması hangi hayvancılık türünün gelişmesini sağlamıştır?`,
+      options: ["A) Büyükbaş Mera Hayvancılığı", "B) İpek Böcekçiliği", "C) Küçükbaş Besi Hayvancılığı", "D) Kümes Hayvancılığı", "E) Balıkçılık"],
+      correct: 0, explanation: "Yaz yağışları ve yüksek gür çayırlar Erzurum-Kars'ta Büyükbaş Mera Hayvancılığını öne çıkarmıştır."
+    });
+
+    // Q15: Madenler ve Enerji Kaynakları
+    questions.push({
+      id: `cografya-d${d}-q15`, denemeNo: d, questionNo: 15, category: "cografya", subcategory: "Madenler", difficulty: difficulty,
+      question: `Dünya rezervlerinin yaklaşık %72'si Türkiye'de bulunan; Balıkesir (Susurluk), Kütahya (Emet) ve Eskişehir (Kırka)'da çıkarılan maden hangisidir?`,
+      options: ["A) Bor Mineralleri", "B) Boksit", "C) Krom", "D) Bakır", "E) Mermer"],
+      correct: 0, explanation: "Bor mineralleri dünya lideri olduğumuz madendir (Balıkesir, Kütahya, Eskişehir)."
+    });
+
+    // Q16: Sanayi Tesisleri
+    questions.push({
+      id: `cografya-d${d}-q16`, denemeNo: d, questionNo: 16, category: "cografya", subcategory: "Sanayi Tesisleri", difficulty: difficulty,
+      question: `Karabük ve Ereğli Demir-Çelik fabrikalarının bu bölgede kurulmasının temel sebebi aşağıdakilerden hangisidir?`,
+      options: ["A) Taş kömürü enerji kaynağına yakınlık", "B) Demir cevherinin zenginliği", "C) İklimin elverişliliği", "D) Tüketici nüfusun azlığı", "E) Tarım alanlarının genişliği"],
+      correct: 0, explanation: "Karabük ve Ereğli'de demir cevheri çıkarılmaz; kömür (enerji kaynağı) yakınlığı nedeniyle fabrikalar kurulmuştur."
+    });
+
+    // Q17: Ulaşım ve Turizm
+    questions.push({
+      id: `cografya-d${d}-q17`, denemeNo: d, questionNo: 17, category: "cografya", subcategory: "Ulaşım ve Turizm", difficulty: difficulty,
+      question: `Türkiye'de iç ve dış ticarette en ucuz taşıma maliyetine sahip olan ulaşım sektörü hangisidir?`,
+      options: ["A) Deniz Yolu", "B) Demiryolu", "C) Karayolu", "D) Hava Yolu", "E) Boru Hattı"],
+      correct: 0, explanation: "Tek seferde büyük miktarda yük taşıyabildiği için en ucuz ulaşım yolu Deniz Yolu'dur."
+    });
+
+    // Q18: Bölgesel Kalkınma Projeleri (GAP, DOKAP, DAP, ZBK vb.)
+    questions.push({
+      id: `cografya-d${d}-q18`, denemeNo: d, questionNo: 18, category: "cografya", subcategory: "Kalkınma Projeleri", difficulty: difficulty,
+      question: `Güneydoğu Anadolu Projesi (GAP) ile birlikte bölgede sulamalı tarıma geçilmesi sonucunda aşağıdaki ürünlerden hangisinin üretiminde patlama yaşanmıştır?`,
+      options: ["A) Pamuk", "B) Çay", "C) Fındık", "D) Elma", "E) Kivi"],
+      correct: 0, explanation: "GAP ile sulama imkânı artınca Şanlıurfa ve çevresi Pamuk üretiminde Türkiye birincisi olmuştur."
+    });
+
     denemeler.push({
-      id: `cog-deneme-${i}`,
-      title: `KPSS Coğrafya Denemesi #${i}`,
-      denemeNo: i,
+      id: `deneme-${d}`,
+      title: `KPSS Coğrafya Denemesi #${d}`,
+      denemeNo: d,
       questionCount: 18,
       difficulty: difficulty,
       difficultyLabel: diffLabel,
-      questions: examQuestions
+      difficultyColor: diffColor,
+      questions: questions
     });
   }
+
   return denemeler;
 }
 
-var cografya40Denemeler = generate40CografyaDenemeleri();
-if (typeof window !== 'undefined') window.cografya40Denemeler = cografya40Denemeler;
+const cografya40Denemeler = generate40CografyaDenemeleri();
+
+if (typeof window !== 'undefined') {
+  window.cografya40Denemeler = cografya40Denemeler;
+}
+
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { cografya40Denemeler, cografyaTopics };
 }

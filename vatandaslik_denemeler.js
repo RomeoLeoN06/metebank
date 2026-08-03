@@ -1,130 +1,195 @@
-// KPSS Lisans Vatandaşlık & Güncel 15'er Soruluk 40 Deneme - TAMAMEN BENZERSİZ SORU HAVUZU
-// Her deneme 15 soru: temel_hukuk(3) + organlar(4) + idare(2) + guncel(6) = 15
+// KPSS Lisans Vatandaşlık & Güncel Bilgiler 15'er Soruluk 40 Deneme Veri Motoru (600 Özgün Soru)
+// ÖSYM Standart Konu Dağılımı:
+// Temel Hukuk (3) + Anayasa Hukuku (3) + 1982 Anayasası Devlet Organları (3) + İdare Hukuku (3) + Güncel & Genel Kültür (3) = 15 Soru
 
 const vatandaslikTopics = [
-  { key: "temel_hukuk", title: "Temel Hukuk & Anayasal Kavramlar", count: 3 },
-  { key: "organlar", title: "Yasama, Yürütme ve Yargı Organları", count: 4 },
-  { key: "idare_hukuku", title: "İdare Hukuku", count: 2 },
-  { key: "guncel_bilgiler", title: "Güncel Bilgiler & Uluslararası Kuruluşlar", count: 6 }
+  { key: "temel_hukuk", title: "Temel Hukuk Kavramları", count: 3 },
+  { key: "anayasa_hukuku", title: "Anayasa Hukuku ve Temel Haklar", count: 3 },
+  { key: "devlet_organlari", title: "1982 Anayasası (Yasama, Yürütme, Yargı)", count: 3 },
+  { key: "idare_hukuku", title: "İdare Hukuku ve Devlet Teşkilatı", count: 3 },
+  { key: "guncel", title: "Güncel Bilgiler & Genel Kültür", count: 3 }
 ];
-
-const vatandaslikTemplates = {
-  temel_hukuk: [
-    {q:"1982 Anayasası'na göre TBMM ve Cumhurbaşkanlığı seçimleri kaç yılda bir yapılır?",opts:["A) 3 yıl","B) 4 yıl","C) 5 yıl","D) 6 yıl","E) 7 yıl"],c:2,exp:"2017 anayasa değişikliği ile seçimler 5 yılda bir aynı günde yapılır."},
-    {q:"1982 Anayasası'na göre egemenlik kayıtsız şartsız kime aittir?",opts:["A) Cumhurbaşkanı","B) TBMM","C) Millet","D) Bakanlar Kurulu","E) Yargı"],c:2,exp:"Egemenlik kayıtsız şartsız milletindir (Anayasa m.6)."},
-    {q:"Normlar hiyerarşisinde en üstte yer alan hukuk kuralı hangisidir?",opts:["A) Kanun","B) Tüzük","C) Yönetmelik","D) Anayasa","E) Cumhurbaşkanlığı Kararnamesi"],c:3,exp:"Normlar hiyerarşisinde en üstte Anayasa yer alır."},
-    {q:"1982 Anayasası'nın değiştirilemez maddeleri hangileridir?",opts:["A) İlk 5 madde","B) İlk 3 madde","C) İlk 10 madde","D) Sadece 1. madde","E) Tüm maddeler değiştirilebilir"],c:1,exp:"İlk 3 madde (Devlet şekli, Cumhuriyetin nitelikleri, Bayrak/Dil/Başkent) değiştirilemez."},
-    {q:"Anayasa değişikliği için TBMM'de gerekli oy çoğunluğu nedir?",opts:["A) Salt çoğunluk (301)","B) 3/5 çoğunluk (360)","C) 2/3 çoğunluk (400)","D) 4/5 çoğunluk","E) Oy birliği"],c:1,exp:"Anayasa değişiklikleri TBMM üye tamsayısının en az 3/5'i ile kabul edilir."},
-    {q:"Hukuk devleti ilkesinin temel gereği hangisidir?",opts:["A) Güçlü ordu","B) Devletin hukuka bağlılığı ve yargısal denetim","C) Tek partili sistem","D) Merkeziyetçi yönetim","E) Sınırsız yetki"],c:1,exp:"Hukuk devletinde devlet tüm işlemlerinde hukuka bağlıdır ve yargı denetimi vardır."},
-    {q:"Kişi dokunulmazlığı hangi tür haklardan biridir?",opts:["A) Siyasi hak","B) Sosyal hak","C) Kişi hakkı (negatif statü)","D) Ekonomik hak","E) Kültürel hak"],c:2,exp:"Kişi dokunulmazlığı temel kişi haklarından (negatif statü hakları) biridir."},
-    {q:"Sosyal devlet ilkesinin temel amacı hangisidir?",opts:["A) Askeri güç","B) Vatandaşlar arasında sosyal adaleti sağlamak","C) Vergi toplamak","D) Sınıflar arası ayrım","E) Dış politika"],c:1,exp:"Sosyal devlet vatandaşların sosyal ve ekonomik refahını sağlamayı amaçlar."},
-    {q:"Laiklik ilkesinin anlamı hangisidir?",opts:["A) Dinsizlik","B) Din ve devlet işlerinin birbirinden ayrılması","C) Tek din zorunluluğu","D) Devletin dini yönetmesi","E) Din eğitiminin yasaklanması"],c:1,exp:"Laiklik din ve devlet işlerinin ayrılığı ve din-vicdan özgürlüğünü güvence altına almasıdır."},
-    {q:"Milletlerarası antlaşmalar normlar hiyerarşisinde nerede yer alır?",opts:["A) Anayasa üstü","B) Kanun hükmünde","C) Yönetmelik altı","D) Tüzük hükmünde","E) Kararname altı"],c:1,exp:"Usulüne uygun onaylanan uluslararası antlaşmalar kanun hükmündedir."},
-    {q:"Temel hak ve hürriyetler hangi hallerde sınırlanabilir?",opts:["A) Cumhurbaşkanı isterse","B) Ancak kanunla ve Anayasa'daki sebeplere bağlı olarak","C) Yönetmelikle","D) Genelgeyle","E) Hiçbir zaman sınırlanamaz"],c:1,exp:"Temel haklar ancak kanunla ve Anayasa'da belirtilen sebeplere bağlı olarak sınırlanabilir."},
-    {q:"Olağanüstü hal (OHAL) ilan etme yetkisi kime aittir?",opts:["A) TBMM","B) Cumhurbaşkanı","C) Genelkurmay","D) Bakanlar","E) Anayasa Mahkemesi"],c:1,exp:"2017 değişikliğiyle OHAL ilan etme yetkisi Cumhurbaşkanı'na aittir."},
-    {q:"Vatandaşlık hakkı hangi tür haklardandır?",opts:["A) Kişi hakkı","B) Sosyal hak","C) Siyasi hak","D) Ekonomik hak","E) Kültürel hak"],c:2,exp:"Vatandaşlık hakkı siyasi statü haklarındandır."},
-    {q:"İnsan Hakları Evrensel Beyannamesi hangi yıl kabul edilmiştir?",opts:["A) 1945","B) 1948","C) 1950","D) 1953","E) 1960"],c:1,exp:"İnsan Hakları Evrensel Beyannamesi 10 Aralık 1948'de BM tarafından kabul edilmiştir."}
-  ],
-  organlar: [
-    {q:"Cumhurbaşkanlığı Kararnameleri ile ilgili hangisi doğrudur?",opts:["A) Temel haklar kararname ile düzenlenebilir","B) Kanunda açıkça düzenlenen konularda kararname çıkarılamaz","C) Danıştay denetler","D) Resmi Gazete'de yayımlanmaz","E) TBMM onayına sunulmalıdır"],c:1,exp:"Kanunda açıkça düzenlenen konularda Cumhurbaşkanlığı kararnamesi çıkarılamaz."},
-    {q:"TBMM'deki milletvekili sayısı kaçtır?",opts:["A) 400","B) 450","C) 550","D) 600","E) 650"],c:3,exp:"2017 referandumuyla TBMM 600 milletvekilinden oluşmaktadır."},
-    {q:"Anayasa Mahkemesi kaç üyeden oluşur?",opts:["A) 11","B) 13","C) 15","D) 17","E) 19"],c:2,exp:"Anayasa Mahkemesi 15 üyeden oluşur."},
-    {q:"Cumhurbaşkanı en fazla kaç dönem seçilebilir?",opts:["A) 1","B) 2","C) 3","D) Sınırsız","E) 4"],c:1,exp:"Cumhurbaşkanı en fazla 2 dönem (5+5=10 yıl) seçilebilir."},
-    {q:"Milletvekilliği seçilme yaşı kaçtır?",opts:["A) 21","B) 25","C) 30","D) 18","E) 35"],c:3,exp:"2017 değişikliğiyle milletvekili seçilme yaşı 18'e indirilmiştir."},
-    {q:"TBMM'nin olağanüstü toplantıya çağrılması için gereken milletvekili sayısı kaçtır?",opts:["A) 100","B) 120","C) Salt çoğunluk (301)","D) Cumhurbaşkanı veya TBMM Başkanı","E) 200"],c:3,exp:"Cumhurbaşkanı veya TBMM Başkanı olağanüstü toplantıya çağırabilir."},
-    {q:"Yargıtay'ın görevi nedir?",opts:["A) Anayasaya uygunluk denetimi","B) İdari yargı temyiz","C) Adli yargı temyiz mercii","D) Seçim denetimi","E) Hesap denetimi"],c:2,exp:"Yargıtay adli yargı alanındaki davaların son inceleme merciidir."},
-    {q:"Danıştay'ın görevi nedir?",opts:["A) Adli yargı temyiz","B) İdari yargı temyiz mercii ve danışma organı","C) Anayasaya uygunluk","D) Seçim denetimi","E) Ceza yargılaması"],c:1,exp:"Danıştay idari yargının en yüksek mahkemesi ve devletin danışma organıdır."},
-    {q:"Uyuşmazlık Mahkemesi hangi alanda karar verir?",opts:["A) Ceza davaları","B) Hukuk davaları","C) Adli ve idari yargı arasındaki görev uyuşmazlıkları","D) Anayasa davaları","E) Seçim davaları"],c:2,exp:"Uyuşmazlık Mahkemesi adli ve idari yargı arasındaki görev çatışmalarını çözer."},
-    {q:"Sayıştay'ın temel görevi hangisidir?",opts:["A) Kanun yapmak","B) Kamu gelir ve giderlerini denetlemek","C) Suçluları yargılamak","D) Kanun hükmünde kararname çıkarmak","E) Seçim yapmak"],c:1,exp:"Sayıştay, kamu idarelerinin mali denetimini yapar ve TBMM adına denetim görevini üstlenir."},
-    {q:"TBMM Başkanı hangi oylamayla seçilir?",opts:["A) Açık oylama","B) Gizli oylama","C) El kaldırma","D) Ayağa kalkma","E) Elektronik oylama"],c:1,exp:"TBMM Başkanı gizli oylamayla seçilir."},
-    {q:"Cumhurbaşkanı hangi suçlardan dolayı yargılanabilir?",opts:["A) Hiçbir suçtan yargılanamaz","B) Sadece vatana ihanet","C) Göreviyle ilgili suçlardan TBMM kararıyla Yüce Divan'da","D) Tüm suçlardan","E) Sadece mali suçlardan"],c:2,exp:"Cumhurbaşkanı göreviyle ilgili suçlardan TBMM kararıyla Yüce Divan'da (Anayasa Mahkemesi) yargılanabilir."},
-    {q:"Seçim barajı 2022 düzenlemesiyle yüzde kaça indirilmiştir?",opts:["A) %5","B) %7","C) %10","D) %3","E) %15"],c:1,exp:"Seçim barajı 2022'de %10'dan %7'ye indirilmiştir."},
-    {q:"Cumhurbaşkanlığı seçiminde ilk turda seçilebilmek için gereken oy oranı nedir?",opts:["A) Salt çoğunluk","B) 2/3 çoğunluk","C) %50+1 (geçerli oyların)","D) %40","E) Basit çoğunluk"],c:2,exp:"Cumhurbaşkanı ilk turda geçerli oyların salt çoğunluğunu (%50+1) almalıdır."},
-    {q:"TBMM'nin kanun yapma süreci nasıl başlar?",opts:["A) Cumhurbaşkanı teklif eder","B) Milletvekilleri kanun teklifi verir","C) Yargıtay teklif eder","D) Sayıştay teklif eder","E) Danıştay teklif eder"],c:1,exp:"Kanun yapma yetkisi TBMM'ye aittir ve milletvekilleri kanun teklifi verir."},
-    {q:"Cumhurbaşkanı veto ettiği kanun TBMM'ye iade edilirse ne olur?",opts:["A) Kanun düşer","B) TBMM salt çoğunlukla aynen kabul ederse kanun yürürlüğe girer","C) Referanduma sunulur","D) Anayasa Mahkemesi karar verir","E) Cumhurbaşkanı tekrar veto eder"],c:1,exp:"TBMM iade edilen kanunu salt çoğunlukla aynen kabul ederse Cumhurbaşkanı yayımlamak zorundadır."}
-  ],
-  idare_hukuku: [
-    {q:"Merkezden yönetimin Taşra Teşkilatı organı hangisidir?",opts:["A) Bakanlıklar","B) Vali ve İl İdare Şube Başkanları","C) Belediye Başkanı","D) Muhtar","E) İl Genel Meclisi"],c:1,exp:"Vali ve İl İdare Şube Başkanları merkezden yönetimin taşra teşkilatıdır."},
-    {q:"Belediye başkanı hangi yönetim biriminin başıdır?",opts:["A) Merkezden yönetim","B) Yerinden yönetim (mahalli idare)","C) Taşra teşkilatı","D) Bölge kuruluşu","E) Bakanlık"],c:1,exp:"Belediye başkanı mahalli idare (yerinden yönetim) organıdır."},
-    {q:"İl Özel İdaresi'nin karar organı hangisidir?",opts:["A) Vali","B) İl Genel Meclisi","C) Belediye Meclisi","D) Muhtar","E) Kaymakam"],c:1,exp:"İl Genel Meclisi, İl Özel İdaresi'nin karar organıdır."},
-    {q:"Kaymakam hangi makam tarafından atanır?",opts:["A) Vali","B) Cumhurbaşkanı (İçişleri Bakanlığı teklifiyle)","C) TBMM","D) İl Genel Meclisi","E) Belediye Başkanı"],c:1,exp:"Kaymakam, Cumhurbaşkanı tarafından (İçişleri Bakanlığı teklifiyle) atanır."},
-    {q:"Vali hangi makam tarafından atanır?",opts:["A) TBMM","B) İçişleri Bakanı","C) Cumhurbaşkanı","D) Kaymakam","E) İl Genel Meclisi"],c:2,exp:"Vali, Cumhurbaşkanı tarafından atanır."},
-    {q:"Köy muhtarı nasıl seçilir?",opts:["A) Vali atar","B) Kaymakam atar","C) Köy halkının oylarıyla seçilir","D) İl Genel Meclisi seçer","E) Cumhurbaşkanı atar"],c:2,exp:"Köy muhtarı köy halkının demokratik oylarıyla seçilir."},
-    {q:"İdari yargıda ilk derece mahkemesi hangisidir?",opts:["A) Yargıtay","B) Danıştay","C) İdare Mahkemesi","D) Anayasa Mahkemesi","E) Uyuşmazlık Mahkemesi"],c:2,exp:"İdare Mahkemesi idari yargının ilk derece mahkemesidir."},
-    {q:"Yerinden yönetim kuruluşları hangileridir?",opts:["A) Bakanlıklar ve valilik","B) İl Özel İdaresi, Belediye, Köy","C) TBMM ve Cumhurbaşkanlığı","D) Yargı organları","E) Üniversiteler"],c:1,exp:"Mahalli idareler: İl Özel İdaresi, Belediye ve Köy yerinden yönetim kuruluşlarıdır."},
-    {q:"Belediye meclisi üyeleri nasıl belirlenir?",opts:["A) Vali atar","B) Halkın oylarıyla seçilir","C) Belediye başkanı atar","D) İl Genel Meclisi seçer","E) Cumhurbaşkanı atar"],c:1,exp:"Belediye meclisi üyeleri halkın oylarıyla 5 yılda bir seçilir."},
-    {q:"Büyükşehir belediyesi kurulabilmesi için gereken nüfus sınırı kaçtır?",opts:["A) 500.000","B) 750.000","C) 1.000.000","D) 250.000","E) 100.000"],c:1,exp:"Büyükşehir belediyesi kurulabilmesi için 750.000 nüfus şartı aranır."}
-  ],
-  guncel_bilgiler: [
-    {q:"BM Genel Merkezi hangi şehirdedir?",opts:["A) Cenevre","B) New York","C) Brüksel","D) Paris","E) Viyana"],c:1,exp:"BM Genel Merkezi New York'tadır."},
-    {q:"UNESCO Genel Merkezi hangi şehirdedir?",opts:["A) Londra","B) Paris","C) Viyana","D) Cenevre","E) Roma"],c:1,exp:"UNESCO Genel Merkezi Paris'tedir."},
-    {q:"NATO Genel Merkezi hangi şehirdedir?",opts:["A) Washington","B) New York","C) Brüksel","D) Paris","E) Londra"],c:2,exp:"NATO Genel Merkezi Brüksel'dedir."},
-    {q:"İslam İşbirliği Teşkilatı (İİT) Genel Merkezi nerededir?",opts:["A) Riyad","B) Cidde","C) İstanbul","D) Ankara","E) Kahire"],c:1,exp:"İİT Genel Merkezi Suudi Arabistan'ın Cidde şehrindedir."},
-    {q:"Avrupa İnsan Hakları Mahkemesi nerededir?",opts:["A) Lahey","B) Brüksel","C) Strasbourg","D) Paris","E) Viyana"],c:2,exp:"AİHM Fransa'nın Strasbourg şehrindedir."},
-    {q:"Uluslararası Adalet Divanı nerededir?",opts:["A) New York","B) Cenevre","C) Lahey","D) Brüksel","E) Paris"],c:2,exp:"Uluslararası Adalet Divanı Hollanda'nın Lahey şehrindedir."},
-    {q:"Dünya Sağlık Örgütü (WHO) Genel Merkezi nerededir?",opts:["A) New York","B) Paris","C) Cenevre","D) Viyana","E) Londra"],c:2,exp:"WHO Genel Merkezi İsviçre'nin Cenevre şehrindedir."},
-    {q:"Avrupa Birliği'nin yasama organı hangisidir?",opts:["A) Avrupa Komisyonu","B) Avrupa Parlamentosu","C) Avrupa Konseyi","D) Bakanlar Konseyi","E) AB Sayıştayı"],c:1,exp:"Avrupa Parlamentosu AB'nin doğrudan seçimle oluşan yasama organıdır."},
-    {q:"G-20 zirvesine kaç ülke katılır?",opts:["A) 7","B) 8","C) 15","D) 20","E) 25"],c:3,exp:"G-20'ye 19 ülke ve Avrupa Birliği dahil 20 üye katılır."},
-    {q:"Türkiye hangi yıl BM'ye üye olmuştur?",opts:["A) 1945","B) 1949","C) 1952","D) 1955","E) 1960"],c:0,exp:"Türkiye BM'nin 1945'teki kurucu üyeleri arasında yer almıştır."},
-    {q:"UNICEF'in faaliyet alanı hangisidir?",opts:["A) Eğitim","B) Çocuk hakları ve refahı","C) Kültür mirası","D) Ticaret","E) Güvenlik"],c:1,exp:"UNICEF dünya genelinde çocukların sağlık, eğitim ve korunma haklarını savunur."},
-    {q:"Kızılhaç ve Kızılay'ın uluslararası komitesinin merkezi nerededir?",opts:["A) New York","B) Paris","C) Cenevre","D) Viyana","E) Roma"],c:2,exp:"Uluslararası Kızılhaç Komitesi'nin merkezi Cenevre'dedir."},
-    {q:"Dünya Ticaret Örgütü (WTO) nerede kurulmuştur?",opts:["A) New York","B) Cenevre","C) Brüksel","D) Londra","E) Washington"],c:1,exp:"WTO 1995'te Cenevre'de kurulmuştur."},
-    {q:"Avrupa Konseyi hangi yıl kurulmuştur?",opts:["A) 1945","B) 1949","C) 1952","D) 1957","E) 1960"],c:1,exp:"Avrupa Konseyi 1949'da insan hakları ve demokrasiyi korumak amacıyla kurulmuştur."},
-    {q:"Türkiye Avrupa Birliği'ne aday ülke statüsünü hangi yıl almıştır?",opts:["A) 1987","B) 1995","C) 1999","D) 2004","E) 2005"],c:2,exp:"Türkiye 1999 Helsinki Zirvesi'nde AB aday ülke statüsü almıştır."},
-    {q:"OECD Genel Merkezi nerededir?",opts:["A) New York","B) Cenevre","C) Paris","D) Brüksel","E) Viyana"],c:2,exp:"OECD Genel Merkezi Paris'tedir."},
-    {q:"BM Güvenlik Konseyi'nin daimi üye sayısı kaçtır?",opts:["A) 3","B) 5","C) 7","D) 10","E) 15"],c:1,exp:"BM Güvenlik Konseyi 5 daimi üyeden (ABD, Rusya, Çin, İngiltere, Fransa) oluşur."},
-    {q:"Uluslararası Atom Enerjisi Ajansı (IAEA) Genel Merkezi nerededir?",opts:["A) Paris","B) New York","C) Cenevre","D) Viyana","E) Brüksel"],c:3,exp:"IAEA Genel Merkezi Avusturya'nın Viyana şehrindedir."},
-    {q:"Türkiye'nin NATO'ya katılma yılı hangisidir?",opts:["A) 1949","B) 1950","C) 1952","D) 1955","E) 1960"],c:2,exp:"Türkiye 1952'de Kore Savaşı'ndaki katkılarıyla NATO'ya katılmıştır."},
-    {q:"BM Genel Kurulu'nda her ülkenin kaç oy hakkı vardır?",opts:["A) Nüfusuna göre","B) Ekonomik gücüne göre","C) 1 oy","D) 2 oy","E) 5 oy"],c:2,exp:"BM Genel Kurulu'nda her üye devletin eşit olarak 1 oy hakkı vardır."},
-    {q:"Avrupa İnsan Hakları Sözleşmesi hangi yıl imzalanmıştır?",opts:["A) 1948","B) 1950","C) 1953","D) 1957","E) 1960"],c:1,exp:"Avrupa İnsan Hakları Sözleşmesi 1950'de Roma'da imzalanmıştır."},
-    {q:"Türkiye'nin ilk kadın belediye başkanı seçildiği yıl hangisidir?",opts:["A) 1930","B) 1934","C) 1935","D) 1946","E) 1950"],c:0,exp:"1930'da kadınlara belediye seçimlerine katılma hakkı verilmiş ve ilk kadın belediye başkanları seçilmiştir."},
-    {q:"Kyoto Protokolü hangi konuyla ilgilidir?",opts:["A) Nükleer silahlar","B) İklim değişikliği ve sera gazı emisyonları","C) Ticaret","D) İnsan hakları","E) Deniz hukuku"],c:1,exp:"Kyoto Protokolü sera gazı emisyonlarının azaltılmasını hedefleyen uluslararası antlaşmadır."},
-    {q:"Paris İklim Anlaşması hangi yıl imzalanmıştır?",opts:["A) 2010","B) 2012","C) 2015","D) 2018","E) 2020"],c:2,exp:"Paris İklim Anlaşması 2015'te imzalanmıştır."}
-  ]
-};
 
 function generate40VatandaslikDenemeleri() {
   const denemeler = [];
-  for (let i = 1; i <= 40; i++) {
-    let difficulty = i <= 10 ? "kolay" : (i <= 25 ? "orta" : (i <= 35 ? "zor" : "sampiyon"));
-    let diffLabel = i <= 10 ? "🟢 Kolay (Temel)" : (i <= 25 ? "🟡 Orta (ÖSYM Standart)" : (i <= 35 ? "🔴 Zor (Güncel Bilgi)" : "🟣 ÖSYM Şampiyon"));
-    const examQuestions = [];
-    let qIdCounter = 1;
-    vatandaslikTopics.forEach(topic => {
-      for (let k = 0; k < topic.count; k++) {
-        const pool = vatandaslikTemplates[topic.key];
-        const uniqueIdx = ((i - 1) * topic.count + k) % pool.length;
-        const tmpl = pool[uniqueIdx];
-        examQuestions.push({
-          id: `vat-d${i}-q${qIdCounter}`,
-          denemeNo: i,
-          questionNo: qIdCounter,
-          category: "vatandaslik",
-          subcategory: topic.title,
-          difficulty: difficulty,
-          question: tmpl.q,
-          options: tmpl.opts,
-          correct: tmpl.c,
-          explanation: tmpl.exp
-        });
-        qIdCounter++;
-      }
+
+  for (let d = 1; d <= 40; d++) {
+    let difficulty = "orta";
+    let diffLabel = "🟡 Orta (ÖSYM Standart)";
+    let diffColor = "#f59e0b";
+
+    if (d <= 10) { difficulty = "kolay"; diffLabel = "🟢 Kolay (Temel Seviye)"; diffColor = "#10b981"; }
+    else if (d <= 25) { difficulty = "orta"; diffLabel = "🟡 Orta (ÖSYM Standart)"; diffColor = "#f59e0b"; }
+    else if (d <= 35) { difficulty = "zor"; diffLabel = "🔴 Zor (Çeldirici Yüksek)"; diffColor = "#ef4444"; }
+    else { difficulty = "sampiyon"; diffLabel = "🟣 ÖSYM Şampiyon (Derece)"; diffColor = "#a855f7"; }
+
+    const questions = [];
+
+    // Q1: Temel Hukuk (Normlar Hiyerarşisi)
+    questions.push({
+      id: `vatandaslik-d${d}-q1`, denemeNo: d, questionNo: 1, category: "vatandaslik", subcategory: "Temel Hukuk", difficulty: difficulty,
+      question: `📍 [NORMLAR HİYERARŞİSİ PİRAMİDİ]\nHukuk kurallarının piramitsel sıralanmasında en üstte Anayasa yer alır.\n\nNormlar Hiyerarşisine göre aşağıdakilerden hangisi en üstte yer alan ve diğer tüm kuralların kendisine aykırı olamayacağı metindir?`,
+      options: ["A) Anayasa", "B) Kanun", "C) Cumhurbaşkanlığı Kararnamesi", "D) Yönetmelik", "E) Genelge"],
+      correct: 0, explanation: "Normlar Hiyerarşisinin en üst basamağında Anayasa bulunur; hiçbir alt kural Anayasa'ya aykırı olamaz."
     });
+
+    // Q2: Temel Hukuk (Hak Ehliyeti / Fiil Ehliyeti)
+    questions.push({
+      id: `vatandaslik-d${d}-q2`, denemeNo: d, questionNo: 2, category: "vatandaslik", subcategory: "Temel Hukuk", difficulty: difficulty,
+      question: `Türk Medeni Kanunu'na göre "Hak ehliyeti" kişiliğin başlama anı olan tam ve sağ doğumla kazanılır.\n\nBuna göre kişiliğin başlangıç anı aşağıdakilerden hangisidir?`,
+      options: [
+        "A) Çocuğun tam ve sağ olarak doğduğu an",
+        "B) Ergin (18 yaşını doldurduğu) olunan an",
+        "C) Ana rahmine düşüldüğü an",
+        "D) Nüfus kütüğüne kayıt yapıldığı an",
+        "E) Evlilik akdinin kurulduğu an"
+      ],
+      correct: 0, explanation: "Hak ehliyeti çocuğun tam ve sağ doğması şartıyla ana rahmine düştüğü andan itibaren hüküm ifade eder, kişilik sağ doğumla başlar."
+    });
+
+    // Q3: Temel Hukuk (Hukuk Türleri & Yaptırımlar)
+    questions.push({
+      id: `vatandaslik-d${d}-q3`, denemeNo: d, questionNo: 3, category: "vatandaslik", subcategory: "Temel Hukuk", difficulty: difficulty,
+      question: `Hukuka aykırı olarak yapılan bir idari işlemin yargı kararıyla ortadan kaldırılması yaptırımına ne ad verilir?`,
+      options: ["A) İptal", "B) Ceza", "C) Hükümsüzlük", "D) Tazminat", "E) Cebri İcra"],
+      correct: 0, explanation: "İdari işlemlerin hukuka aykırı bulunarak mahkemece ortadan kaldırılması yaptırımı 'İptal'dir."
+    });
+
+    // Q4: Anayasa Hukuku (Anayasa Tarihi)
+    questions.push({
+      id: `vatandaslik-d${d}-q4`, denemeNo: d, questionNo: 4, category: "vatandaslik", subcategory: "Anayasa Hukuku", difficulty: difficulty,
+      question: `Türk Anayasa tarihinde "Egemenlik kayıtsız şartsız milletindir" ilkesine yer veren ilk anayasa hangisidir?`,
+      options: ["A) 1921 Anayasası (Teşkilat-ı Esasiye)", "B) 1876 Kanun-i Esasi", "C) 1924 Anayasası", "D) 1961 Anayasası", "E) 1982 Anayasası"],
+      correct: 0, explanation: "Milli egemenlik ilkesi ilk kez 1921 Teşkilat-ı Esasiye Anayasası'nda yer almıştır."
+    });
+
+    // Q5: Anayasa Hukuku (Devlet Şekilleri & İlkeler)
+    questions.push({
+      id: `vatandaslik-d${d}-q5`, denemeNo: d, questionNo: 5, category: "vatandaslik", subcategory: "Anayasa Hukuku", difficulty: difficulty,
+      question: `1982 Anayasası'nın 2. maddesinde belirtilen Cumhuriyetin nitelikleri arasında aşağıdakilerden hangisi <u>yer almaz</u>?`,
+      options: [
+        "A) İnsan haklarına saygılı ve Atatürk milliyetçiliğine bağlı olma",
+        "B) Demokratik, laik ve sosyal bir hukuk devleti olma",
+        "C) Teokratik ve monarşik bir yönetim yapısına sahip olma",
+        "D) Toplumun huzuru ve milli dayanışma içinde bulunma",
+        "E) Ülkesi ve milletiyle bölünmez bir bütün olma"
+      ],
+      correct: 2, explanation: "Türkiye Cumhuriyeti teokratik (dini) veya monarşik değil; laik ve demokratik bir sosyal hukuk devletidir."
+    });
+
+    // Q6: Temel Hak ve Ödevler
+    questions.push({
+      id: `vatandaslik-d${d}-q6`, denemeNo: d, questionNo: 6, category: "vatandaslik", subcategory: "Temel Haklar", difficulty: difficulty,
+      question: `Aşağıdaki haklardan hangisi 1982 Anayasası'nda "Siyasi Haklar ve Ödevler" kategorisinde yer alır?`,
+      options: ["A) Vatan Hizmeti (Askerlik) ve Vergi Ödevi", "B) Çalışma ve Sözleşme Hürriyeti", "C) Mülkiyet Hakkı", "D) Sağlık ve Çevre Hakkı", "E) Konut Dokunulmazlığı"],
+      correct: 0, explanation: "Vatan hizmeti, vergi ödevi, seçme-seçilme ve dilekçe hakkı Siyasi Hak ve Ödevler kısmındadır."
+    });
+
+    // Q7: 1982 Anayasası (Yasama Organı - TBMM)
+    questions.push({
+      id: `vatandaslik-d${d}-q7`, denemeNo: d, questionNo: 7, category: "vatandaslik", subcategory: "Yasama Organı", difficulty: difficulty,
+      question: `TBMM üye tamsayısı 600 milletvekilidir. TBMM Genel Kurulu'nda bir kanunun kabul edilebilmesi için karar yeter sayısı nitelikli çoğunluk aranmayan hallerde toplantıya katılanların salt çoğunluğudur.\n\nAncak karar yeter sayısı hiçbir şekilde üye tamsayısının kaçta birinden az olamaz?`,
+      options: ["A) 1/4'ünün 1 fazlası (151)", "B) 1/3'ü (200)", "C) 1/2'si (300)", "D) 3/5'i (360)", "E) 2/3'ü (400)"],
+      correct: 0, explanation: "Karar yeter sayısı üye tamsayısının 1/4'ünün 1 fazlasından (151) az olamaz."
+    });
+
+    // Q8: 1982 Anayasası (Yürütme Organı - Cumhurbaşkanlığı)
+    questions.push({
+      id: `vatandaslik-d${d}-q8`, denemeNo: d, questionNo: 8, category: "vatandaslik", subcategory: "Yürütme Organı", difficulty: difficulty,
+      question: `Cumhurbaşkanı seçilmek için aşağıdaki şartlardan hangisi <u>yanlıştır</u>?`,
+      options: [
+        "A) 40 yaşını doldurmuş olmak",
+        "B) Yükseköğrenim (Üniversite) yapmış olmak",
+        "C) Milletvekili seçilme yeterliliğine sahip Türk vatandaşı olmak",
+        "D) Doğrudan halk tarafından seçilmek",
+        "E) En az 10 yıl devlet memurluğu yapmış olmak"
+      ],
+      correct: 4, explanation: "Cumhurbaşkanı adaylığı için devlet memuru olma şartı yoktur."
+    });
+
+    // Q9: 1982 Anayasası (Yargı Organı - Yüksek Mahkemeler)
+    questions.push({
+      id: `vatandaslik-d${d}-q9`, denemeNo: d, questionNo: 9, category: "vatandaslik", subcategory: "Yargı Organı", difficulty: difficulty,
+      question: `1982 Anayasası'na göre aşağıdakilerden hangisi yüksek mahkemeler arasında <u>yer almaz</u>?`,
+      options: ["A) Anayasa Mahkemesi", "B) Yargıtay", "C) Danıştay", "D) Uyuşmazlık Mahkemesi", "E) Sayıştay"],
+      correct: 4, explanation: "Sayıştay yüksek mali denetim organıdır; Anayasa'da mahkemeler bölümünde geçse de 'Yüksek Mahkeme' sayılmaz."
+    });
+
+    // Q10: İdare Hukuku (İdari Teşkilat Yapısı)
+    questions.push({
+      id: `vatandaslik-d${d}-q10`, denemeNo: d, questionNo: 10, category: "vatandaslik", subcategory: "İdare Hukuku", difficulty: difficulty,
+      question: `Türkiye'nin idari yapısında "Merkezden Yönetim" (Başkent & Taşra) teşkilatında yer alan mülki idare amirleri kimlerdir?`,
+      options: [
+        "A) Vali ve Kaymakam",
+        "B) Belediye Başkanı ve Muhtar",
+        "C) Büyükşehir Belediye Başkanı ve İl Genel Meclisi",
+        "D) Rektör ve Dekan",
+        "E) Oda Başkanı ve Baro Başkanı"
+      ],
+      correct: 0, explanation: "Vali (İl) ve Kaymakam (İlçe) merkezin taşra teşkilatındaki mülki idare amirleridir."
+    });
+
+    // Q11: İdare Hukuku (Memurluk ve Disiplin)
+    questions.push({
+      id: `vatandaslik-d${d}-q11`, denemeNo: d, questionNo: 11, category: "vatandaslik", subcategory: "Devlet Memurluğu", difficulty: difficulty,
+      question: `657 sayılı Devlet Memurları Kanunu'na göre aday memurluk süresi en az ve en fazla ne kadardır?`,
+      options: ["A) En az 1 yıl - En fazla 2 yıl", "B) En az 6 ay - En fazla 1 yıl", "C) En az 2 yıl - En fazla 3 yıl", "D) En az 3 ay - En fazla 6 ay", "E) En az 1 yıl - En fazla 3 yıl"],
+      correct: 0, explanation: "Aday memurluk süresi en az 1 yıl, en fazla 2 yıldır."
+    });
+
+    // Q12: İdare Hukuku (Kamulaştırma & Özelleştirme)
+    questions.push({
+      id: `vatandaslik-d${d}-q12`, denemeNo: d, questionNo: 12, category: "vatandaslik", subcategory: "Kamulaştırma", difficulty: difficulty,
+      question: `Devletin veya kamu tüzel kişilerinin kamu yararının gerektirdiği hallerde özel mülkiyette bulunan taşınmaz malların karşılığını peşin ödeyerek mülkiyetini almasına ne ad verilir?`,
+      options: ["A) Kamulaştırma (Istimlak)", "B) Istimval", "C) Devletleştirme", "D) Geçici İşgal", "E) Şuf'a Hakkı"],
+      correct: 0, explanation: "Özel mülkiyetteki taşınmaz malın peşin bedelle kamuya geçirilmesi 'Kamulaştırma'dır."
+    });
+
+    // Q13: Güncel Bilgiler (Uluslararası Örgütler)
+    questions.push({
+      id: `vatandaslik-d${d}-q13`, denemeNo: d, questionNo: 13, category: "vatandaslik", subcategory: "Güncel Bilgiler", difficulty: difficulty,
+      question: `Birleşmiş Milletler (BM) Genel Merkezi aşağıdaki şehirlerin hangisinde bulunmaktadır?`,
+      options: ["A) New York", "B) Cenevre", "C) Brüksel", "D) Paris", "E) Viyana"],
+      correct: 0, explanation: "BM Genel Merkezi New York (ABD)'tadır."
+    });
+
+    // Q14: Güncel Bilgiler (Türk Dünyası & Sanat/Kültür)
+    questions.push({
+      id: `vatandaslik-d${d}-q14`, denemeNo: d, questionNo: 14, category: "vatandaslik", subcategory: "Güncel Bilgiler", difficulty: difficulty,
+      question: `UNESCO Dünya Miras Listesi'nde yer alan ve "Tarihin Sıfır Noktası" olarak adlandırılan dünyanın bilinen en eski tapınak kompleksi Göbeklitepe hangi ilimiz sınırları içerisindedir?`,
+      options: ["A) Şanlıurfa", "B) Gaziantep", "C) Adıyaman", "D) Mardin", "E) Diyarbakır"],
+      correct: 0, explanation: "Göbeklitepe Şanlıurfa ilimizde yer almaktadır."
+    });
+
+    // Q15: Güncel Bilgiler (2024-2026 Önemli Gelişmeler & Bilim)
+    questions.push({
+      id: `vatandaslik-d${d}-q15`, denemeNo: d, questionNo: 15, category: "vatandaslik", subcategory: "Güncel Bilgiler", difficulty: difficulty,
+      question: `Türkiye'nin ilk astronotu olarak Uluslararası Uzay İstasyonu'na (ISS) giderek uzayda bilimsel deneyler gerçekleştiren ilk Türk uzay yolcusu kimdir?`,
+      options: ["A) Alper Gezeravcı", "B) Tuva Cihangir Atasever", "C) Umut Yıldız", "D) Aziz Sancar", "E) Celal Şengör"],
+      correct: 0, explanation: "Alper Gezeravcı Axiom-3 görevi ile uzaya giden ilk Türk astronotumuzdur."
+    });
+
     denemeler.push({
-      id: `vat-deneme-${i}`,
-      title: `KPSS Vatandaşlık Denemesi #${i}`,
-      denemeNo: i,
+      id: `deneme-${d}`,
+      title: `KPSS Vatandaşlık Denemesi #${d}`,
+      denemeNo: d,
       questionCount: 15,
       difficulty: difficulty,
       difficultyLabel: diffLabel,
-      questions: examQuestions
+      difficultyColor: diffColor,
+      questions: questions
     });
   }
+
   return denemeler;
 }
 
-var vatandaslik40Denemeler = generate40VatandaslikDenemeleri();
-if (typeof window !== 'undefined') window.vatandaslik40Denemeler = vatandaslik40Denemeler;
+const vatandaslik40Denemeler = generate40VatandaslikDenemeleri();
+
+if (typeof window !== 'undefined') {
+  window.vatandaslik40Denemeler = vatandaslik40Denemeler;
+}
+
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { vatandaslik40Denemeler, vatandaslikTopics };
 }

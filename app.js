@@ -379,7 +379,7 @@ function setupDashboard() {
   const totalSolvedEl = document.getElementById('dashTotalSolved');
   if (totalSolvedEl) totalSolvedEl.textContent = solvedCount;
   
-  const totalNet = Math.max(0, appState.stats.totalCorrect - (appState.stats.totalWrong / 4)).toFixed(2);
+  const totalNet = (appState.stats.totalCorrect - (appState.stats.totalWrong / 4)).toFixed(2);
   const netValEl = document.getElementById('dashNetVal');
   if (netValEl) netValEl.textContent = `${totalNet} Net`;
 
@@ -537,6 +537,99 @@ function renderGeometryOrChartSvg(q) {
   if (!q) return '';
   const subcat = (q.subcategory || '').toLowerCase();
   const qStr = (q.question || '').toLowerCase();
+
+  // --- COĞRAFYA & VATANDAŞLIK GÖRSEL ŞEMALAR ---
+  if (qStr.includes('fay hatları') || qStr.includes('horst')) {
+    return `
+      <div class="svg-diagram-card">
+        <svg viewBox="0 0 250 120" class="svg-math-canvas">
+          <path d="M 20 80 Q 70 40 120 70 T 220 50" fill="none" stroke="#10b981" stroke-width="3" />
+          <path d="M 30 40 L 230 40" fill="none" stroke="#f43f5e" stroke-width="2.5" stroke-dasharray="4 2" />
+          <path d="M 50 90 Q 140 100 230 80" fill="none" stroke="#38bdf8" stroke-width="2" />
+          <circle cx="80" cy="55" r="5" fill="#f59e0b" />
+          <circle cx="160" cy="60" r="5" fill="#f43f5e" />
+          <text x="80" y="42" fill="#fbbf24" font-size="10" font-weight="bold" text-anchor="middle">KAF</text>
+          <text x="160" y="48" fill="#fda4af" font-size="10" font-weight="bold" text-anchor="middle">DAF</text>
+          <text x="40" y="105" fill="#38bdf8" font-size="10" font-weight="bold">BAF (Horst-Graben)</text>
+        </svg>
+        <span class="diagram-caption">🗺️ Türkiye Fay Hatları ve Horst-Graben Dağları Harita Şeması</span>
+      </div>
+    `;
+  }
+
+  if (qStr.includes('izohips')) {
+    return `
+      <div class="svg-diagram-card">
+        <svg viewBox="0 0 220 130" class="svg-math-canvas">
+          <ellipse cx="110" cy="65" rx="90" ry="50" fill="none" stroke="#64748b" stroke-width="1.8" />
+          <ellipse cx="110" cy="65" rx="65" ry="35" fill="none" stroke="#818cf8" stroke-width="2" />
+          <ellipse cx="110" cy="65" rx="40" ry="20" fill="none" stroke="#34d399" stroke-width="2.2" />
+          <circle cx="110" cy="65" r="3" fill="#fbbf24" />
+          <text x="110" y="60" fill="#fbbf24" font-size="10" font-weight="bold" text-anchor="middle">Zirve (800 m)</text>
+          <text x="175" y="70" fill="#94a3b8" font-size="9">200 m</text>
+          <text x="150" y="70" fill="#a5b4fc" font-size="9">400 m</text>
+          <text x="130" y="70" fill="#34d399" font-size="9">600 m</text>
+        </svg>
+        <span class="diagram-caption">📍 Eş Yükselti (İzohips) Topoğrafya Haritası (İzohips Aralığı: 200 m)</span>
+      </div>
+    `;
+  }
+
+  if (qStr.includes('yağış grafiği') || qStr.includes('iklim ve yağış')) {
+    return `
+      <div class="svg-diagram-card">
+        <svg viewBox="0 0 240 140" class="svg-math-canvas">
+          <line x1="30" y1="15" x2="30" y2="115" stroke="#64748b" stroke-width="2" />
+          <line x1="30" y1="115" x2="220" y2="115" stroke="#64748b" stroke-width="2" />
+          <rect x="40" y="60" width="12" height="55" fill="#38bdf8" />
+          <rect x="60" y="75" width="12" height="40" fill="#38bdf8" />
+          <rect x="80" y="85" width="12" height="30" fill="#38bdf8" />
+          <rect x="100" y="95" width="12" height="20" fill="#38bdf8" />
+          <rect x="120" y="100" width="12" height="15" fill="#f59e0b" />
+          <rect x="140" y="90" width="12" height="25" fill="#38bdf8" />
+          <rect x="160" y="50" width="12" height="65" fill="#38bdf8" />
+          <rect x="180" y="35" width="12" height="80" fill="#38bdf8" />
+          <path d="M 45 90 Q 110 30 185 85" fill="none" stroke="#f43f5e" stroke-width="2.5" />
+          <text x="215" y="118" fill="#cbd5e1" font-size="9">Aylar</text>
+        </svg>
+        <span class="diagram-caption">📊 İklim Sıcaklık (°C) ve Yağış (mm) Grafiği</span>
+      </div>
+    `;
+  }
+
+  if (qStr.includes('nüfus piramidi')) {
+    return `
+      <div class="svg-diagram-card">
+        <svg viewBox="0 0 220 130" class="svg-math-canvas">
+          <line x1="110" y1="15" x2="110" y2="115" stroke="#94a3b8" stroke-width="2" />
+          <line x1="20" y1="115" x2="200" y2="115" stroke="#94a3b8" stroke-width="2" />
+          <polygon points="110,25 60,115 110,115" fill="rgba(99, 102, 241, 0.4)" stroke="#6366f1" />
+          <polygon points="110,25 160,115 110,115" fill="rgba(244, 63, 94, 0.4)" stroke="#f43f5e" />
+          <text x="75" y="105" fill="#a5b4fc" font-size="10" font-weight="bold">Erkek</text>
+          <text x="135" y="105" fill="#fda4af" font-size="10" font-weight="bold">Kadın</text>
+        </svg>
+        <span class="diagram-caption">📊 Türkiye Yaş Grubu Demografik Nüfus Piramidi</span>
+      </div>
+    `;
+  }
+
+  if (qStr.includes('normlar hiyerarşisi')) {
+    return `
+      <div class="svg-diagram-card">
+        <svg viewBox="0 0 220 130" class="svg-math-canvas">
+          <polygon points="110,15 30,115 190,115" fill="none" stroke="#f59e0b" stroke-width="2" />
+          <line x1="90" y1="40" x2="130" y2="40" stroke="#f59e0b" stroke-width="1.5" />
+          <line x1="70" y1="65" x2="150" y2="65" stroke="#f59e0b" stroke-width="1.5" />
+          <line x1="50" y1="90" x2="170" y2="90" stroke="#f59e0b" stroke-width="1.5" />
+          <text x="110" y="32" fill="#fbbf24" font-size="10" font-weight="extrabold" text-anchor="middle">1. ANAYASA</text>
+          <text x="110" y="56" fill="#a5b4fc" font-size="10" font-weight="bold" text-anchor="middle">2. KANUN / ANTLAŞMA</text>
+          <text x="110" y="81" fill="#38bdf8" font-size="10" font-weight="bold" text-anchor="middle">3. CB KARARNAMESİ</text>
+          <text x="110" y="106" fill="#34d399" font-size="10" font-weight="bold" text-anchor="middle">4. YÖNETMELİK</text>
+        </svg>
+        <span class="diagram-caption">⚖️ Hukuk Kuralları Normlar Hiyerarşisi Piramidi</span>
+      </div>
+    `;
+  }
 
   // --- 0. TABLO ANALİZİ PROBLEMLERİ ---
   if (qStr.includes('tablo') || qStr.includes('mağazalarının') || qStr.includes('ürün sayıları')) {
@@ -1056,6 +1149,59 @@ function renderGeometryOrChartSvg(q) {
   return '';
 }
 
+function formatRichExplanation(q, isCorrect, selectedOptIndex) {
+  if (!q) return '';
+  const correctOptText = (q.options && typeof q.correct === 'number') ? q.options[q.correct] : '';
+  const userOptText = (q.options && typeof selectedOptIndex === 'number') ? q.options[selectedOptIndex] : '';
+  const subcat = q.subcategory || q.category || 'ÖSYM Müfredat Konusu';
+
+  let statusBanner = '';
+  if (typeof selectedOptIndex === 'number') {
+    if (isCorrect) {
+      statusBanner = `
+        <div style="display: flex; align-items: center; gap: 10px; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(16, 185, 129, 0.45); padding: 10px 14px; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);">
+          <span style="font-size: 1.4rem;">✅</span>
+          <div>
+            <strong style="color: #34d399; font-size: 0.95rem; display: block; font-weight: 800;">TEBRİKLER! DOĞRU CEVAP</strong>
+            <span style="font-size: 0.82rem; color: #a7f3d0;">Doğru seçeneği başarıyla tespit ettiniz.</span>
+          </div>
+        </div>
+      `;
+    } else {
+      statusBanner = `
+        <div style="display: flex; align-items: center; gap: 10px; background: rgba(244, 63, 94, 0.16); border: 1px solid rgba(244, 63, 94, 0.45); padding: 10px 14px; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25);">
+          <span style="font-size: 1.4rem;">❌</span>
+          <div>
+            <strong style="color: #fda4af; font-size: 0.95rem; display: block; font-weight: 800;">YANLIŞ CEVAP</strong>
+            <span style="font-size: 0.82rem; color: #fecdd3;">İşaretlenen: <strong style="color: #ffffff;">${userOptText}</strong></span>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  let expBody = (q.explanation || 'Bu sorunun çözümü ÖSYM sınav müfredatı standartlarına uygun olarak detaylandırılmıştır.').trim();
+  expBody = expBody.replace(/\n/g, '<br>');
+
+  return `
+    ${statusBanner}
+    <div style="font-size: 0.9rem; line-height: 1.6; color: #cbd5e1;">
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+        <span style="background: rgba(99, 102, 241, 0.22); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.4); padding: 4px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 800; display: inline-flex; align-items: center; gap: 4px;">📌 ${subcat}</span>
+        <span style="background: rgba(16, 185, 129, 0.22); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); padding: 4px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 800; display: inline-flex; align-items: center; gap: 4px;">🎯 Doğru Seçenek: ${correctOptText}</span>
+      </div>
+      <div style="background: rgba(15, 23, 42, 0.8); border-left: 4px solid #6366f1; padding: 14px 16px; border-radius: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); border-right: 1px solid rgba(255, 255, 255, 0.08); border-bottom: 1px solid rgba(255, 255, 255, 0.08); box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);">
+        <strong style="color: #fbbf24; font-size: 0.92rem; display: flex; align-items: center; gap: 6px; margin-bottom: 8px; font-weight: 800;">
+          <span>💡</span> <span>ÖSYM Detaylı Çözüm ve Analiz Açıklaması:</span>
+        </strong>
+        <div style="color: #f1f5f9; font-size: 0.9rem; line-height: 1.7; font-weight: 400;">
+          ${expBody}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function renderCurrentQuestion() {
   try {
     const q = appState.currentQuestions[appState.currentIndex];
@@ -1090,6 +1236,18 @@ function renderCurrentQuestion() {
           .join('\n').trim();
       }
 
+      // Auto-format Roman numerals in parentheses: (I), (II), (III), (IV), (V), (VI) on separate lines
+      cleanQ = cleanQ.replace(/\s+(\((?:I|II|III|IV|V|VI|VII|VIII|IX|X)\))/gi, '\n$1');
+
+      // Auto-format Roman numerals with dots: II., III., IV., V. on separate lines
+      cleanQ = cleanQ.replace(/([^\n])\s+((?:II|III|IV|V|VI|VII|VIII|IX|X)\.\s+)/g, '$1\n$2');
+
+      // Auto-format numeric criteria: (1), (2), (3) or 1., 2., 3. or 1), 2), 3) on separate lines
+      cleanQ = cleanQ.replace(/([^\n])\s+((?:\(\d+\)|\d+\))\s+[A-ZÇĞİÖŞÜa-zçğıöşü])/g, '$1\n$2');
+
+      // Add double spacing before final question prompt
+      cleanQ = cleanQ.replace(/([^\n])\n*(\s*(?:Numaralanmış|Bu parçada|Bu parçaya|Bu parçadan|Buna göre|Aşağıdakilerden|Yukarıdaki|Yukarıda verilen)\b)/gi, '$1\n\n$2');
+
       let formattedText = cleanQ.split('\n')
         .map(line => line.trim())
         .filter(line => line.length > 0)
@@ -1100,7 +1258,7 @@ function renderCurrentQuestion() {
           <span>📌 ${q.subcategory || 'Soru'}</span>
         </div>
         ${diagramHtml}
-        <div style="line-height: 1.6; font-size: 0.96rem; font-weight: 500; color: #f8fafc;">${formattedText}</div>
+        <div style="line-height: 1.7; font-size: 0.96rem; font-weight: 500; color: #f8fafc;">${formattedText}</div>
       `;
     }
 
@@ -1145,7 +1303,7 @@ function renderCurrentQuestion() {
     const expText = document.getElementById('explanationText');
     if (expBox && expText) {
       if (savedAns) {
-        expText.textContent = q.explanation || 'Çözüm açıklaması.';
+        expText.innerHTML = formatRichExplanation(q, savedAns.isCorrect, savedAns.selectedOption);
         expBox.style.display = 'flex';
         expBox.classList.add('active');
       } else {
@@ -1157,6 +1315,11 @@ function renderCurrentQuestion() {
     const nextBtn = document.getElementById('nextQuestionBtn');
     if (nextBtn) {
       nextBtn.textContent = (currentNum === total) ? 'Testi Bitir 🏁' : 'Sonraki Soru ❯';
+    }
+
+    const prevBtn = document.getElementById('prevQuestionBtn');
+    if (prevBtn) {
+      prevBtn.style.display = (appState.currentIndex > 0) ? 'block' : 'none';
     }
 
     const quizCard = document.querySelector('#view-quiz .glass-card');
@@ -1244,7 +1407,7 @@ function selectOption(optionIndex) {
   const expBox = document.getElementById('explanationBox');
   const expText = document.getElementById('explanationText');
   if (expBox && expText) {
-    expText.textContent = q.explanation || 'Çözüm bulunuyor.';
+    expText.innerHTML = formatRichExplanation(q, isCorrect, optionIndex);
     expBox.style.display = 'flex';
     setTimeout(() => expBox.classList.add('active'), 50);
   }
@@ -1345,6 +1508,17 @@ function setupQuizControls() {
     });
   }
 
+  const prevBtn = document.getElementById('prevQuestionBtn');
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (appState.currentIndex > 0) {
+        appState.currentIndex--;
+        renderCurrentQuestion();
+      }
+    });
+  }
+
   const nextBtn = document.getElementById('nextQuestionBtn');
   if (nextBtn) {
     nextBtn.addEventListener('click', (e) => {
@@ -1369,7 +1543,7 @@ function finishQuizSession() {
 
   if (appState.activeDenemeId) {
     if (!appState.stats.completedDenemeler) appState.stats.completedDenemeler = {};
-    const net = Math.max(0, appState.sessionCorrect - (appState.sessionWrong / 4));
+    const net = appState.sessionCorrect - (appState.sessionWrong / 4);
     appState.stats.completedDenemeler[appState.activeDenemeId] = {
       correct: appState.sessionCorrect,
       wrong: appState.sessionWrong,
@@ -1751,13 +1925,27 @@ function setupStatsView() {
   if (resetBtn) {
     resetBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      appState.stats = { totalSolved: 0, totalCorrect: 0, totalWrong: 0, totalNet: 0, completedDenemeler: {} };
+      const confirmReset = confirm('Tüm çözülmüş soru verileriniz, netleriniz ve kaydedilmiş sınav oturumlarınız tamamen sıfırlanacak. Emin misiniz?');
+      if (!confirmReset) return;
+
+      appState.stats = { totalSolved: 0, totalCorrect: 0, totalWrong: 0, totalNet: 0, solvedQids: [], completedDenemeler: {} };
       appState.bookmarks = [];
       appState.missedQuestions = [];
+      appState.activeSessions = {};
+      appState.savedQuestionsStore = {};
       saveState();
+
       renderStatsView();
       setupDashboard();
-      alert('İstatistikler başarıyla sıfırlandı.');
+      renderTurkceDenemeGrid();
+      renderMatematikDenemeGrid();
+      renderTarihDenemeGrid();
+      renderCografyaDenemeGrid();
+      renderVatandaslikDenemeGrid();
+      renderMissedQuestions();
+      renderFavsQuestions();
+
+      alert('✨ Tüm veritabanı ve istatistikler başarıyla sıfırlandı.');
     });
   }
 }
@@ -1822,7 +2010,7 @@ function showExamResultModal() {
   const correct = appState.sessionCorrect;
   const wrong = appState.sessionWrong;
   const empty = appState.sessionEmpty;
-  const net = Math.max(0, correct - (wrong / 4));
+  const net = correct - (wrong / 4);
 
   const cEl = document.getElementById('examModalCorrect');
   if (cEl) cEl.textContent = correct;
@@ -1835,12 +2023,6 @@ function showExamResultModal() {
 
   const nEl = document.getElementById('examModalNet');
   if (nEl) nEl.textContent = `${net.toFixed(2)} NET`;
-
-  const totalQ = (appState.currentQuestions && appState.currentQuestions.length > 0) ? appState.currentQuestions.length : 30;
-  const estP3 = (50 + (net / totalQ) * 45).toFixed(1);
-
-  const p3El = document.getElementById('examModalP3');
-  if (p3El) p3El.textContent = `Tahmini P3 Puanı: ${estP3}`;
 
   modal.classList.add('active');
 }
