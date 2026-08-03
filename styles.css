@@ -582,22 +582,27 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 4px;
+  gap: 6px;
   width: 100%;
-  overflow-x: hidden;
+  box-sizing: border-box;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .chip {
-  flex: 1;
+  flex: 1 1 0px;
+  min-width: 0;
   text-align: center;
-  padding: 6px 2px;
+  padding: 8px 4px;
   border-radius: 12px;
-  font-size: 0.72rem;
-  font-weight: 700;
+  font-size: 0.78rem;
+  font-weight: 800;
   color: var(--text-muted);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
   cursor: pointer;
   transition: all 0.15s ease;
 }
@@ -911,37 +916,54 @@ body {
   background: none; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer;
 }
 
-/* Full Width Bottom Nav Bar (6 Items) - Bold & Vivid Modern Theme */
+/* Full Width Bottom Nav Bar (6 Items) - Bold & Vivid Responsive Theme */
 .bottom-nav {
   position: fixed;
   bottom: 0; left: 0; right: 0;
   width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
   background: rgba(11, 15, 25, 0.96);
   backdrop-filter: blur(18px);
   border-top: 1.5px solid rgba(99, 102, 241, 0.35);
   box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.65);
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  padding: 8px 6px calc(8px + var(--safe-bottom));
+  padding: 6px 2px calc(6px + var(--safe-bottom));
   z-index: 900;
+  overflow-x: hidden;
 }
 
 .nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
+  justify-content: center;
+  gap: 2px;
   color: #cbd5e1;
-  font-size: 0.76rem !important;
+  font-size: 0.68rem !important;
   font-weight: 800 !important;
   cursor: pointer;
   background: transparent;
   border: 1px solid transparent;
-  border-radius: 12px;
-  padding: 6px 4px;
-  flex: 1;
+  border-radius: 10px;
+  padding: 5px 1px;
+  flex: 1 1 0px;
+  min-width: 0;
+  overflow: hidden;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-item span:not(.nav-icon) {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+  display: block;
+  text-align: center;
+  font-size: 0.65rem;
+  letter-spacing: -0.2px;
 }
 
 .nav-item:hover {
@@ -950,8 +972,9 @@ body {
 }
 
 .nav-icon {
-  font-size: 1.35rem !important;
+  font-size: 1.25rem !important;
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
 }
 
 .nav-item.active {
@@ -960,7 +983,7 @@ body {
 }
 
 .nav-item.active .nav-icon {
-  transform: scale(1.22);
+  transform: scale(1.18);
 }
 
 /* Subject-Specific Glowing Active Tabs */
