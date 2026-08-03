@@ -24,23 +24,18 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Install Capacitor & Initialize Android Platform
+      - name: Install Cordova & Build Native Android APK
         run: |
-          npm init -y
-          npm install @capacitor/core@6.0.0 @capacitor/cli@6.0.0 @capacitor/android@6.0.0
-          npx cap init "KPSS Lisans" "com.metebank.kpss" --web-dir .
-          npx cap add android
-          npx cap copy android
-          npx cap sync android
-
-      - name: Build Android Debug APK
-        run: |
-          cd android
-          chmod +x gradlew
-          ./gradlew assembleDebug
+          npm install -g cordova
+          cordova create android_app com.metebank.kpss "KPSS Lisans"
+          rm -rf android_app/www/*
+          cp -r index.html app.js styles.css manifest.json sw.js questions.js *.js icons android_app/www/
+          cd android_app
+          cordova platform add android@12.0.0
+          cordova build android --debug
 
       - name: Upload APK File
         uses: actions/upload-artifact@v4
         with:
           name: KPSS_Lisans_Soru_Bankasi_APK
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          path: android_app/platforms/android/app/build/outputs/apk/debug/app-debug.apk
